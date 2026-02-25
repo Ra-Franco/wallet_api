@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/backend/">
+    <Project Path="../Wallet.Application/Wallet.Application.csproj" Id="b7b80746-7a89-468b-85d8-71444c9372f2" />
+    <Project Path="../Wallet.Infrasctucture/Wallet.Infrasctructure.csproj" Id="983ffef7-736a-4a9a-8f0c-37a8e3aa7462" />
+    <Project Path="Wallet.Api/Wallet.Api.csproj" Id="8d931ea2-7627-4209-83ea-e3ff9b256315" />
+    <Project Path="Wallet.Domain/Wallet.Domain.csproj" Id="5043ce05-99cd-41cc-832f-db8306a547b3" />
+  </Folder>
+  <Folder Name="/src/shared/">
+    <Project Path="../../shared/Wallet.Communication/Wallet.Communication.csproj" Id="eee62566-6d0f-44a5-9d7c-1aed07562c02" />
+    <Project Path="../../shared/Wallet.Exceptions/Wallet.Exceptions.csproj" Id="72a47b2d-d93e-411a-8104-9be5fe5263fa" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="CommonTestUtilities/CommonTestUtilities.csproj" Id="572f600b-3989-4762-adf0-06de24255a0c" />
+    <Project Path="UseCases.Test/UseCases.Test.csproj" Id="d8e7ad84-f597-4360-afe3-b7480402342f" />
+    <Project Path="Validators.Test/Validators.Test.csproj" Id="4860c4ee-bf88-4e3e-b190-083e0f22654a" />
+    <Project Path="WebApi.Test/WebApi.Test.csproj" Id="34fb2d84-6149-44af-8b24-2123c95a5c00" />
+  </Folder>
+</Solution>
