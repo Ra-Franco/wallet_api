@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\backend\wallet_api\Wallet.Domain\Wallet.Domain.csproj" />
+    <ProjectReference Include="..\..\backend\Wallet.Domain\Wallet.Domain.csproj" />
   </ItemGroup>
 
 </Project>

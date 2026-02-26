@@ -14,7 +14,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\shared\Wallet.Communication\Wallet.Communication.csproj" />
 	  <ProjectReference Include="..\..\shared\Wallet.Exceptions\Wallet.Exceptions.csproj" />
-	  <ProjectReference Include="..\wallet_api\Wallet.Domain\Wallet.Domain.csproj" />
+	  <ProjectReference Include="..\Wallet.Domain\Wallet.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

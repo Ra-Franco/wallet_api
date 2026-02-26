@@ -18,8 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\shared\Wallet.Exceptions\Wallet.Exceptions.csproj" />
-    <ProjectReference Include="..\..\Wallet.Application\Wallet.Application.csproj" />
+    <ProjectReference Include="..\..\src\shared\Wallet.Exceptions\Wallet.Exceptions.csproj" />
     <ProjectReference Include="..\CommonTestUtilities\CommonTestUtilities.csproj" />
   </ItemGroup>
 

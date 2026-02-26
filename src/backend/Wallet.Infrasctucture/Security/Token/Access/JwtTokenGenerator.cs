@@ -26,7 +26,7 @@ namespace Wallet.Infrasctructure.Security.Token.Access
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(_expirationTimeMinutes)
+                Expires = DateTime.UtcNow.AddMinutes(_expirationTimeMinutes),
                 SigningCredentials = new SigningCredentials(SecurityKey(_signingKey), SecurityAlgorithms.HmacSha256Signature)
             };
 

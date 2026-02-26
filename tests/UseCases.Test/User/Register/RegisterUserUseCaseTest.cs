@@ -31,8 +31,8 @@ namespace UseCases.Test.User.Register
 
             Func<Task> act = async () => await useCase.Execute(request);
             (await act.Should().ThrowAsync<ErrorOnValidationException>())
-                .Where(e => e.ErrorMessages.Count == 1 &&
-                        e.ErrorMessages.Contains(ResourceMessageException.EMAIL_ALREADY_REGISTERED));
+                .Where(e => e.GetErrorMessages().Count == 1 &&
+                        e.GetErrorMessages().Contains(ResourceMessageException.EMAIL_ALREADY_REGISTERED));
         }
         [Fact]
         public async Task Cpf_Email_Already_Registered()
@@ -42,8 +42,8 @@ namespace UseCases.Test.User.Register
 
             Func<Task> act = async () => await useCase.Execute(request);
             (await act.Should().ThrowAsync<ErrorOnValidationException>())
-                .Where(e => e.ErrorMessages.Count == 1 &&
-                        e.ErrorMessages.Contains(ResourceMessageException.CPF_ALREADY_EXIST));
+                .Where(e => e.GetErrorMessages().Count == 1 &&
+                        e.GetErrorMessages().Contains(ResourceMessageException.CPF_ALREADY_EXIST));
         }
 
         private static RegisterUserUseCase CreateUseCase(string? email = null, string? cpf = null)

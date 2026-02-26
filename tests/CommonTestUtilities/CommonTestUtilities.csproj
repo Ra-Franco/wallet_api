@@ -13,9 +13,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\shared\Wallet.Communication\Wallet.Communication.csproj" />
-	  <ProjectReference Include="..\..\..\shared\Wallet.Exceptions\Wallet.Exceptions.csproj" />
-	  <ProjectReference Include="..\..\Wallet.Application\Wallet.Application.csproj" />
+
+	  <ProjectReference Include="..\..\src\backend\Wallet.Application\Wallet.Application.csproj" />
+	  <ProjectReference Include="..\..\src\shared\Wallet.Communication\Wallet.Communication.csproj" />
+	  <ProjectReference Include="..\..\src\shared\Wallet.Exceptions\Wallet.Exceptions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

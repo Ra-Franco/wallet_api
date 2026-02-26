@@ -19,11 +19,11 @@
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
 	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\shared\Wallet.Exceptions\Wallet.Exceptions.csproj" />
-    <ProjectReference Include="..\CommonTestUtilities\CommonTestUtilities.csproj" />
-    <ProjectReference Include="..\Wallet.Api\Wallet.Api.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\backend\Wallet.Api\Wallet.Api.csproj" />
+	  <ProjectReference Include="..\..\src\shared\Wallet.Exceptions\Wallet.Exceptions.csproj" />
+	  <ProjectReference Include="..\CommonTestUtilities\CommonTestUtilities.csproj" />
+	</ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
