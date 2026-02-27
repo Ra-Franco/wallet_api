@@ -21,5 +21,12 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.User
         {
             return await _dbContext.Users.AnyAsync(user => user.Email.Equals(email));
         }
+
+        public async Task<bool> ExistActiveUserWithIdentifier(Guid userIdentifier)
+        {
+            return await _dbContext
+                .Users
+                .AnyAsync(user => user.UserIdentifier.Equals(userIdentifier) && user.Status.Equals("Active"));
+        }
     }
 }

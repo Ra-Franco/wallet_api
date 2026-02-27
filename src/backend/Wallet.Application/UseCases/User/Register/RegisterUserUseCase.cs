@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using MyRecipeBook.Application.Services.Cryptography;
 using System.ComponentModel.DataAnnotations;
+using Wallet.Application.Tokens;
 using Wallet.Communication.Requests;
 using Wallet.Communication.Responses;
+using Wallet.Communication.Responses.Token;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.User;
@@ -18,19 +20,22 @@ namespace Wallet.Application.UseCases.User.Register
         private readonly IMapper _mapper;
         private readonly PasswordEncrypter _passwordEncrypter;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IAccessTokenGenerator _tokenAccess;
 
         public RegisterUserUseCase(
             IUserRepositoryReadOnly readRepository, 
             IUserRepositoryWriteOnly writeRepository, 
             IMapper mapper, 
             PasswordEncrypter passwordEncrypter, 
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IAccessTokenGenerator accessTokenGenerator)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
             _mapper = mapper;
             _passwordEncrypter = passwordEncrypter;
             _unitOfWork = unitOfWork;
+            _tokenAccess = accessTokenGenerator;
         }
 
         public async Task<ResponseUserRegister> Execute(RequestRegisterUserJson request)
@@ -38,13 +43,17 @@ namespace Wallet.Application.UseCases.User.Register
             await Validate(request);
             var user = _mapper.Map<Domain.Entities.User>(request);
             user.Password = _passwordEncrypter.Encrypt(request.Password);
+            user.UserIdentifier = Guid.NewGuid();
 
             await _writeRepository.Add(user);
             await _unitOfWork.Commit();
             return new ResponseUserRegister
             {
                 Name = user.Name,
-                Id = user.Id
+                Tokens = new ResponseTokenJson
+                {
+                    AccessToken = _tokenAccess.Generate(user.UserIdentifier)
+                }
             };
         }
 

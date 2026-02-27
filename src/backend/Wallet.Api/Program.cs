@@ -1,9 +1,14 @@
+using Microsoft.OpenApi.Models;
 using Wallet.Api.Filters;
 using Wallet.Api.Middlewares;
+using Wallet.Api.Token;
 using Wallet.Application;
+using Wallet.Application.Tokens;
 using Wallet.Infrasctructure.Extensions;
 using Wallet.Infrasctructure.Migrations;
 using Wallet.Infrasctucture;
+
+const string AUTHENTICATION_TYPE = "Bearer";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,15 +17,48 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(opt =>
+{
+    opt.AddSecurityDefinition(AUTHENTICATION_TYPE, new OpenApiSecurityScheme
+    {
+        Description = @"JWT Authorization header using Bearer scheme.
+                        Enter 'Bearer' [space] and the your token in the text input below.
+                        Example: 'Bearer 123asdfbcs'",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = AUTHENTICATION_TYPE
+    });
+
+    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = AUTHENTICATION_TYPE
+                },
+                Scheme = "oauth2",
+                Name = AUTHENTICATION_TYPE,
+                In = ParameterLocation.Header
+            },
+            new List<string>()
+        }
+    });
+});
+
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddInfrasctructure(builder.Configuration);
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddApplication(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
