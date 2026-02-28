@@ -17,7 +17,8 @@ namespace Wallet.Infrasctructure.Migrations.Versions
                 .WithColumn("Phonenumber").AsString(16).NotNullable()
                 .WithColumn("Income").AsDecimal(15, 4).NotNullable()
                 .WithColumn("Occupation").AsString(100).Nullable()
-                .WithColumn("Password").AsString().NotNullable();
+                .WithColumn("Password").AsString().NotNullable()
+                .WithColumn("Status").AsInt64().NotNullable().WithDefaultValue(1);
         }
     }
 }

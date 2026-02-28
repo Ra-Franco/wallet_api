@@ -4,6 +4,7 @@ using System.Security.Claims;
 using Wallet.Application.Services.LoggedUser;
 using Wallet.Application.Tokens;
 using Wallet.Domain.Entities;
+using Wallet.Domain.Enum;
 using Wallet.Infrasctucture.DataAccess;
 
 namespace Wallet.Infrasctructure.Services.LoggedUser
@@ -33,7 +34,7 @@ namespace Wallet.Infrasctructure.Services.LoggedUser
             return await _db
                 .Users
                 .AsNoTracking()
-                .FirstAsync(user => user.Status == "Active");
+                .FirstAsync(user => user.Status == UserStatus.Active && user.UserIdentifier == userIdentifer);
         }
     }
 }

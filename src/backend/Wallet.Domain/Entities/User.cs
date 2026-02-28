@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Wallet.Domain.Enum;
 
 namespace Wallet.Domain.Entities
 {
@@ -14,6 +15,7 @@ namespace Wallet.Domain.Entities
         public string Phonenumber { get; set; } = string.Empty;
         public string Occupation { get; set; } = string.Empty;
         public decimal Income { get; set; } = decimal.Zero;
+        public UserStatus Status { get; set; }
         public Guid UserIdentifier { get; set; }
     }
 }
