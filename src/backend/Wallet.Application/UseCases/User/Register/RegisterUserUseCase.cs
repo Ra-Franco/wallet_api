@@ -2,6 +2,7 @@
 using MyRecipeBook.Application.Services.Cryptography;
 using System.ComponentModel.DataAnnotations;
 using Wallet.Application.Tokens;
+using Wallet.Application.UseCases.Wallet.Register;
 using Wallet.Communication.Requests;
 using Wallet.Communication.Responses;
 using Wallet.Communication.Responses.Token;
@@ -23,6 +24,7 @@ namespace Wallet.Application.UseCases.User.Register
         private readonly IPasswordEncrypt _passwordEncrypter;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAccessTokenGenerator _tokenAccess;
+        private readonly IRegisterWalletUseCase _registerWalletUseCase;
 
         public RegisterUserUseCase(
             IUserRepositoryReadOnly readRepository, 
@@ -30,7 +32,8 @@ namespace Wallet.Application.UseCases.User.Register
             IMapper mapper,
             IPasswordEncrypt passwordEncrypter, 
             IUnitOfWork unitOfWork,
-            IAccessTokenGenerator accessTokenGenerator)
+            IAccessTokenGenerator accessTokenGenerator,
+            IRegisterWalletUseCase registerWalletUseCase)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
@@ -38,6 +41,7 @@ namespace Wallet.Application.UseCases.User.Register
             _passwordEncrypter = passwordEncrypter;
             _unitOfWork = unitOfWork;
             _tokenAccess = accessTokenGenerator;
+            _registerWalletUseCase = registerWalletUseCase;
         }
 
         public async Task<ResponseUserRegister> Execute(RequestRegisterUserJson request)
@@ -50,7 +54,11 @@ namespace Wallet.Application.UseCases.User.Register
             user.Status = UserStatus.Active;
             
             await _writeRepository.Add(user);
+
             await _unitOfWork.Commit();
+
+            await _registerWalletUseCase.Execute(user);
+
 
             return new ResponseUserRegister
             {
