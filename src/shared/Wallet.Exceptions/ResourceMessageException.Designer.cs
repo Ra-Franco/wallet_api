@@ -88,6 +88,15 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The id or password is incorrect..
+        /// </summary>
+        public static string CPF_OR_PASSWORD_INCORRECT {
+            get {
+                return ResourceManager.GetString("CPF_OR_PASSWORD_INCORRECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail already registered..
         /// </summary>
         public static string EMAIL_ALREADY_REGISTERED {

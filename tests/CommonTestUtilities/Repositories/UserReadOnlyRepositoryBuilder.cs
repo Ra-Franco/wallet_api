@@ -13,12 +13,12 @@ namespace CommonTestUtilities.Repositories
 
         public void ExistActiveUserWithEmail(string email)
         {
-            _repository.Setup(repository => repository.ExistActiveUserWithEmail(email)).ReturnsAsync(true);
+            _repository.Setup(repository => repository.ExistUserWithEmail(email)).ReturnsAsync(true);
         }
 
         public void ExistActiveUserWithCpf(string cpf)
         {
-            _repository.Setup(repo => repo.ExistActiveUserWithCpf(cpf)).ReturnsAsync(true);
+            _repository.Setup(repo => repo.ExistUserWithCpf(cpf)).ReturnsAsync(true);
         }
     }
 }
