@@ -7,9 +7,11 @@ using Wallet.Application.Services.LoggedUser;
 using Wallet.Application.Tokens;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.User;
+using Wallet.Domain.Security.Cryptography;
 using Wallet.Infrasctructure.DataAccess;
 using Wallet.Infrasctructure.DataAccess.Repositories.User;
 using Wallet.Infrasctructure.Extensions;
+using Wallet.Infrasctructure.Security.Cryptography;
 using Wallet.Infrasctructure.Security.Token.Access;
 using Wallet.Infrasctructure.Services.LoggedUser;
 using Wallet.Infrasctucture.DataAccess;
@@ -24,6 +26,7 @@ namespace Wallet.Infrasctucture
             AddTokens(services, configuration);
             AddLoggedUser(services);
             AddRepositories(services);
+            AddPasswordEncrypter(services, configuration);
             if (configuration.IsUnitTestEnviroment())
                 return;
 
@@ -65,6 +68,12 @@ namespace Wallet.Infrasctucture
                 .WithGlobalConnectionString(connectionString)
                 .ScanIn(Assembly.Load("Wallet.Infrasctructure")).For.All();
             });
+        }
+
+        private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)
+        {
+            var salt = configuration.GetValue<string>("Settings:Password:Salt");
+            services.AddScoped<IPasswordEncrypt>(option => new Sha512Encrypter(salt!));
         }
     }
 }

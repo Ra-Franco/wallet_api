@@ -6,8 +6,10 @@ using Wallet.Communication.Requests;
 using Wallet.Communication.Responses;
 using Wallet.Communication.Responses.Token;
 using Wallet.Domain.Entities;
+using Wallet.Domain.Enum;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.User;
+using Wallet.Domain.Security.Cryptography;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 
@@ -18,15 +20,15 @@ namespace Wallet.Application.UseCases.User.Register
         private readonly IUserRepositoryReadOnly _readRepository;
         private readonly IUserRepositoryWriteOnly _writeRepository;
         private readonly IMapper _mapper;
-        private readonly PasswordEncrypter _passwordEncrypter;
+        private readonly IPasswordEncrypt _passwordEncrypter;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAccessTokenGenerator _tokenAccess;
 
         public RegisterUserUseCase(
             IUserRepositoryReadOnly readRepository, 
             IUserRepositoryWriteOnly writeRepository, 
-            IMapper mapper, 
-            PasswordEncrypter passwordEncrypter, 
+            IMapper mapper,
+            IPasswordEncrypt passwordEncrypter, 
             IUnitOfWork unitOfWork,
             IAccessTokenGenerator accessTokenGenerator)
         {
@@ -41,12 +43,15 @@ namespace Wallet.Application.UseCases.User.Register
         public async Task<ResponseUserRegister> Execute(RequestRegisterUserJson request)
         {
             await Validate(request);
+            
             var user = _mapper.Map<Domain.Entities.User>(request);
             user.Password = _passwordEncrypter.Encrypt(request.Password);
             user.UserIdentifier = Guid.NewGuid();
-
+            user.Status = UserStatus.Active;
+            
             await _writeRepository.Add(user);
             await _unitOfWork.Commit();
+
             return new ResponseUserRegister
             {
                 Name = user.Name,
@@ -62,11 +67,11 @@ namespace Wallet.Application.UseCases.User.Register
             var validator = new RegisterUserValidator();
             var result = validator.Validate(request);
 
-            var emailExist = await _readRepository.ExistActiveUserWithEmail(request.Email);
+            var emailExist = await _readRepository.ExistUserWithEmail(request.Email);
 
             if (emailExist)
                 result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessageException.EMAIL_ALREADY_REGISTERED));
-            var cpfExist = await _readRepository.ExistActiveUserWithCpf(request.CPF);
+            var cpfExist = await _readRepository.ExistUserWithCpf(request.CPF);
             if (cpfExist)
                 result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessageException.CPF_ALREADY_EXIST));
 
