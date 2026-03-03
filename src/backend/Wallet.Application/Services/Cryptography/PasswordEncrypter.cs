@@ -1,9 +1,10 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using Wallet.Domain.Security.Cryptography;
 
 namespace MyRecipeBook.Application.Services.Cryptography
 {
-    public class PasswordEncrypter
+    public class PasswordEncrypter : IPasswordEncrypt
     {
         private readonly string _salt;
 

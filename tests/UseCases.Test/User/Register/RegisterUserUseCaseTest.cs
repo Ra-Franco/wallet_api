@@ -1,7 +1,11 @@
 ﻿using CommonTestUtilities.Cryptography;
+using CommonTestUtilities.Entities;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositories;
 using CommonTestUtilities.Requests;
+using CommonTestUtilities.Services;
+using CommonTestUtilities.Token;
+using CommonTestUtilities.UseCases;
 using FluentAssertions;
 using Wallet.Application.UseCases.User.Register;
 using Wallet.Exceptions;
@@ -16,11 +20,13 @@ namespace UseCases.Test.User.Register
         {
             var request = RequestRegisterUserJsonBuilder.Build();
             var useCase = CreateUseCase();
+            var user = UserBuilder.Build();
 
             var result = await useCase.Execute(request);
 
             result.Should().NotBeNull();
             result.Name.Should().Be(request.Name);
+            result.Tokens.AccessToken.Should().NotBeNull();
         }
 
         [Fact]
@@ -53,13 +59,15 @@ namespace UseCases.Test.User.Register
             var unitOfWork = UnitOfWorkBuilder.Build();
             var writeRepository = UserWriteOnlyRepositoryBuilder.Build();
             var readRepositoryBuilder = new UserReadOnlyRepositoryBuilder();
+            var tokenGenerator = JwtTokenGeneratorBuilder.Build();
+            var registerWalletUseCase = RegisterWalletUseCaseBuilder.Build();
 
             if (!string.IsNullOrEmpty(email))
                 readRepositoryBuilder.ExistActiveUserWithEmail(email);
             if (!string.IsNullOrEmpty(cpf))
                 readRepositoryBuilder.ExistActiveUserWithCpf(cpf);
 
-            return new RegisterUserUseCase(readRepositoryBuilder.Build(), writeRepository, mapper, passwordEncrypter, unitOfWork);
+            return new RegisterUserUseCase(readRepositoryBuilder.Build(), writeRepository, mapper, passwordEncrypter, unitOfWork, tokenGenerator, registerWalletUseCase);
         }
     }
 }
