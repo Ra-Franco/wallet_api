@@ -12,5 +12,14 @@ namespace Wallet.Application.UseCases
                 .Must(cpf => CpfUtils.IsValid(cpf))
                 .WithMessage(ResourceMessageException.CPF_INVALID);
         }
+
+        public static IRuleBuilderOptions<T, string>TransactionPasswordIsValid<T>(this IRuleBuilder<T, string> ruleBuilder)
+        {
+            return ruleBuilder
+                .NotNull().WithMessage(ResourceMessageException.TRANSACTIONAL_PASSWORD_NOTNULL)
+                .NotEmpty().WithMessage(ResourceMessageException.TRANSACTIONAL_PASSWORD_NOTNULL)
+                .Length(6).WithMessage(ResourceMessageException.TRANSACTIONAL_PASSWORD_LENGTH)
+                .Matches(@"^\d+$").WithMessage(ResourceMessageException.TRANSACTIONAL_PASSWORD_ONLY_NUMBER);
+        }
     }
 }

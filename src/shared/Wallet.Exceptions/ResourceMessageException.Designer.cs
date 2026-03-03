@@ -169,11 +169,65 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The user not have transaction password..
+        /// </summary>
+        public static string TRANSACTIONAL_PASSWORD_IS_NULL {
+            get {
+                return ResourceManager.GetString("TRANSACTIONAL_PASSWORD_IS_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The transaction password had to be 6 length..
+        /// </summary>
+        public static string TRANSACTIONAL_PASSWORD_LENGTH {
+            get {
+                return ResourceManager.GetString("TRANSACTIONAL_PASSWORD_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The password cannot be null..
+        /// </summary>
+        public static string TRANSACTIONAL_PASSWORD_NOTNULL {
+            get {
+                return ResourceManager.GetString("TRANSACTIONAL_PASSWORD_NOTNULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The password need contain only numbers..
+        /// </summary>
+        public static string TRANSACTIONAL_PASSWORD_ONLY_NUMBER {
+            get {
+                return ResourceManager.GetString("TRANSACTIONAL_PASSWORD_ONLY_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The user has not permission..
+        /// </summary>
+        public static string UNAUTHORIZED_ERROR {
+            get {
+                return ResourceManager.GetString("UNAUTHORIZED_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Unknow error..
         /// </summary>
         public static string UNKNOW_ERROR {
             get {
                 return ResourceManager.GetString("UNKNOW_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The wallet has not been found..
+        /// </summary>
+        public static string WALLET_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("WALLET_NOT_FOUND", resourceCulture);
             }
         }
     }

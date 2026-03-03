@@ -156,4 +156,22 @@
   <data name="CPF_OR_PASSWORD_INCORRECT" xml:space="preserve">
     <value>The id or password is incorrect.</value>
   </data>
+  <data name="UNAUTHORIZED_ERROR" xml:space="preserve">
+    <value>The user has not permission.</value>
+  </data>
+  <data name="WALLET_NOT_FOUND" xml:space="preserve">
+    <value>The wallet has not been found.</value>
+  </data>
+  <data name="TRANSACTIONAL_PASSWORD_NOTNULL" xml:space="preserve">
+    <value>The password cannot be null.</value>
+  </data>
+  <data name="TRANSACTIONAL_PASSWORD_LENGTH" xml:space="preserve">
+    <value>The transaction password had to be 6 length.</value>
+  </data>
+  <data name="TRANSACTIONAL_PASSWORD_ONLY_NUMBER" xml:space="preserve">
+    <value>The password need contain only numbers.</value>
+  </data>
+  <data name="TRANSACTIONAL_PASSWORD_IS_NULL" xml:space="preserve">
+    <value>The user not have transaction password.</value>
+  </data>
 </root>

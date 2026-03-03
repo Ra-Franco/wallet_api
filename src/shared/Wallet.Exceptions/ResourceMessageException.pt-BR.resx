@@ -156,4 +156,22 @@
   <data name="CPF_OR_PASSWORD_INCORRECT" xml:space="preserve">
     <value>O CPF ou à senha estão errados.</value>
   </data>
+  <data name="UNAUTHORIZED_ERROR" xml:space="preserve">
+    <value>O usuário não tem permissão.</value>
+  </data>
+  <data name="WALLET_NOT_FOUND" xml:space="preserve">
+    <value>A carteira não foi encontrada.</value>
+  </data>
+  <data name="TRANSACTIONAL_PASSWORD_NOTNULL" xml:space="preserve">
+    <value>A senha não pode ser vazia.</value>
+  </data>
+  <data name="TRANSACTIONAL_PASSWORD_LENGTH" xml:space="preserve">
+    <value>A senha só pode ser com 6 dígitos.</value>
+  </data>
+  <data name="TRANSACTIONAL_PASSWORD_ONLY_NUMBER" xml:space="preserve">
+    <value>A senha só pode conter números.</value>
+  </data>
+  <data name="TRANSACTIONAL_PASSWORD_IS_NULL" xml:space="preserve">
+    <value>O usuário não tem a senha para transação.</value>
+  </data>
 </root>

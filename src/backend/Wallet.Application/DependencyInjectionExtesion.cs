@@ -5,7 +5,10 @@ using MyRecipeBook.Application.Services.Cryptography;
 using Wallet.Application.UseCases.Auth.Login;
 using Wallet.Application.UseCases.User.Register;
 using Wallet.Application.UseCases.Wallet.Add;
+using Wallet.Application.UseCases.Wallet.CreateTransactionalPassword;
+using Wallet.Application.UseCases.Wallet.Get;
 using Wallet.Application.UseCases.Wallet.Register;
+using Wallet.Application.UseCases.Wallet.TransactionalPassword;
 
 namespace Wallet.Application
 {
@@ -31,6 +34,8 @@ namespace Wallet.Application
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
             services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
             services.AddScoped<IRegisterWalletUseCase, RegisterWalletUseCase>();
+            services.AddScoped<ISetTransactionalPassword, SetTransactionalPassword>();
+            services.AddScoped<IWalletDasboardUseCase, WalletDasboardUseCase>();
         }
 
         private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)

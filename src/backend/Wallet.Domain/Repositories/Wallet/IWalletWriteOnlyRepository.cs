@@ -3,5 +3,7 @@
     public interface IWalletWriteOnlyRepository
     {
         public Task CreateWallet(Entities.Wallet wallet);
+
+        public Task UpdateTransactionPassword(string transactionPassword, long walletId);
     }
 }

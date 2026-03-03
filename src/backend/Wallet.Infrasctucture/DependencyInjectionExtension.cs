@@ -52,6 +52,7 @@ namespace Wallet.Infrasctucture
             services.AddScoped<IUserRepositoryReadOnly, UserRepository>();
             services.AddScoped<IUserRepositoryWriteOnly, UserRepository>();
             services.AddScoped<IWalletWriteOnlyRepository, WalletRepository>();
+            services.AddScoped<IWalletReadOnlyRepository, WalletRepository>();
         }
 
         private static void AddTokens(IServiceCollection services, IConfiguration configuration)
