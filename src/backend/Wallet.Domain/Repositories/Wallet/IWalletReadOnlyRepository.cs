@@ -2,8 +2,8 @@
 {
     public interface IWalletReadOnlyRepository
     {
-        public Task<Entities.Wallet> FindWalletByUserId(long userId);
+        public Task<Entities.WalletEntity> FindWalletByUserId(long userId);
 
-        public Task<Entities.Wallet> GetWalletDashboard(long userId);
+        public Task<Entities.WalletEntity> GetWalletDashboard(long userId);
     }
 }

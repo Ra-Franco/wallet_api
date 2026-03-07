@@ -4,7 +4,7 @@ using Wallet.Domain.Enum;
 
 namespace Wallet.Domain.Entities
 {
-    public class Wallet : EntityBase
+    public class WalletEntity : EntityBase
     {
         public decimal Balance { get; set; } = decimal.Zero;
         [Column("Pending_Balance")]

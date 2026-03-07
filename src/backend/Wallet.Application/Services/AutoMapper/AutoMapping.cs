@@ -23,7 +23,7 @@ namespace MyRecipeBook.Application.Services.AutoMapper
 
         private void DomainToResponse()
         {
-            CreateMap<Wallet.Domain.Entities.Wallet, ResponseWalletDashboard>()
+            CreateMap<Wallet.Domain.Entities.WalletEntity, ResponseWalletDashboard>()
                 .ForMember(dest => dest.HasTransactionPassword,
                     opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.TransactionPassword)))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));

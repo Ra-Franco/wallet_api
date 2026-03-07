@@ -18,7 +18,7 @@ namespace Wallet.Application.UseCases.Wallet.Add
 
         public async Task Execute(Domain.Entities.User user)
         {
-            var wallet = new Domain.Entities.Wallet
+            var wallet = new Domain.Entities.WalletEntity
             {
                 UserId = user.Id,
                 Status = WalletStatus.Active

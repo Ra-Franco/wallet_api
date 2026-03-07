@@ -34,7 +34,7 @@ namespace Wallet.Application.UseCases.Wallet.CreateTransactionalPassword
 
             var encryptedPassword = _passwordEncrypt.Encrypt(request.TransactionPassword);
          
-            await _walletWriteOnlyRepository.UpdateTransactionPassword(encryptedPassword, wallet.Id);
+            await _walletWriteOnlyRepository.UpdateTransactionPassword(encryptedPassword, wallet);
             await _unitOfWork.Commit();
         }
 

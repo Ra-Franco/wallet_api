@@ -8,7 +8,7 @@ namespace Wallet.Infrasctucture.DataAccess
         public WalletDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Domain.Entities.Wallet> Wallet { get; set; }
+        public DbSet<Domain.Entities.WalletEntity> Wallet { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   

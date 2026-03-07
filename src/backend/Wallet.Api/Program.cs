@@ -67,7 +67,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<CultureMiddleware>();
-app.UseHttpsRedirection();
+
 
 app.UseAuthorization();
 
