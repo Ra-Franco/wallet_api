@@ -2,8 +2,8 @@
 using CommonTestUtilities.Entities;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositories;
+using CommonTestUtilities.Repositories.User;
 using CommonTestUtilities.Requests;
-using CommonTestUtilities.Services;
 using CommonTestUtilities.Token;
 using CommonTestUtilities.UseCases;
 using FluentAssertions;
@@ -11,7 +11,7 @@ using Wallet.Application.UseCases.User.Register;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 
-namespace UseCases.Test.User.Register
+namespace UseCases.Test.Users.Register
 {
     public class RegisterUserUseCaseTest
     {

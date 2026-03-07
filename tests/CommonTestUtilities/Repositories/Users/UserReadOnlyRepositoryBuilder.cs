@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Wallet.Domain.Repositories.User;
 
-namespace CommonTestUtilities.Repositories
+namespace CommonTestUtilities.Repositories.User
 {
     public class UserReadOnlyRepositoryBuilder
     {
@@ -19,6 +19,11 @@ namespace CommonTestUtilities.Repositories
         public void ExistActiveUserWithCpf(string cpf)
         {
             _repository.Setup(repo => repo.ExistUserWithCpf(cpf)).ReturnsAsync(true);
+        }
+
+        public void ExistActiveUserWithCpfAndPassword(Wallet.Domain.Entities.User user)
+        {
+            _repository.Setup(repo => repo.ExistActiveUserWithCpfAndPassword(user.CPF, user.Password)).ReturnsAsync(user);
         }
     }
 }

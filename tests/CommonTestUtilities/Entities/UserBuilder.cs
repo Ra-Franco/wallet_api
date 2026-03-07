@@ -26,7 +26,8 @@ namespace CommonTestUtilities.Entities
                 .RuleFor(user => user.Phonenumber, f => f.Phone.PhoneNumber("(##) #####-####"))
                 .RuleFor(user => user.Occupation, f => f.Name.JobTitle())
                 .RuleFor(user => user.Income, f => f.Finance.Amount(1500, 10000))
-                .RuleFor(user => user.Status, f => f.PickRandom<UserStatus>());
+                // Ensure test users are Active to avoid intermittent unauthorized results
+                .RuleFor(user => user.Status, f => UserStatus.Active);
 
             return (user, password);
 

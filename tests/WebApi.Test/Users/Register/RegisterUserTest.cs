@@ -7,14 +7,16 @@ using System.Text.Json;
 using Wallet.Exceptions;
 using WebApi.Test.InlineData;
 
-namespace WebApi.Test.User.Register
+namespace WebApi.Test.Users.Register
 {
-    public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory>
+    public class RegisterUserTest : WalletCustomClassFixture
     {
         private readonly string route = "user";
         private readonly HttpClient _httpClient;
-        public RegisterUserTest(CustomWebApplicationFactory factory) => _httpClient = factory.CreateClient();
-
+        public RegisterUserTest(CustomWebApplicationFactory factory) : base(factory)
+        {
+            _httpClient = factory.CreateClient();
+        }
 
         [Fact]
         public async Task Success()
