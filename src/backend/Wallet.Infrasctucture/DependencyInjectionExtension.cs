@@ -9,6 +9,7 @@ using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.User;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Domain.Security.Cryptography;
+using Wallet.Domain.Services.TransactionNumber;
 using Wallet.Infrasctructure.DataAccess;
 using Wallet.Infrasctructure.DataAccess.Repositories.User;
 using Wallet.Infrasctructure.DataAccess.Repositories.Wallet;
@@ -16,6 +17,7 @@ using Wallet.Infrasctructure.Extensions;
 using Wallet.Infrasctructure.Security.Cryptography;
 using Wallet.Infrasctructure.Security.Token.Access;
 using Wallet.Infrasctructure.Services.LoggedUser;
+using Wallet.Infrasctructure.Services.TransactionNumber;
 using Wallet.Infrasctucture.DataAccess;
 
 
@@ -29,6 +31,7 @@ namespace Wallet.Infrasctucture
             AddLoggedUser(services);
             AddRepositories(services);
             AddPasswordEncrypter(services, configuration);
+            AddTransactionNumberGenerator(services);
             if (configuration.IsUnitTestEnviroment())
                 return;
 
@@ -79,5 +82,7 @@ namespace Wallet.Infrasctucture
             var salt = configuration.GetValue<string>("Settings:Password:Salt");
             services.AddScoped<IPasswordEncrypt>(option => new Sha512Encrypter(salt!));
         }
+
+        private static void AddTransactionNumberGenerator(IServiceCollection services) => services.AddScoped<ITransactionNumberGenerator, TransactionNumberGenerator>();
     }
 }
