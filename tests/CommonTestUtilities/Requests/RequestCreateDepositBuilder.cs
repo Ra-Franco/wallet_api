@@ -1,0 +1,15 @@
+﻿using Bogus;
+using Wallet.Communication.Requests.Deposit;
+
+namespace CommonTestUtilities.Requests
+{
+    public class RequestCreateDepositBuilder
+    {
+        public static RequestCreateDeposit Build(int characteres = 3)
+        {
+            return new Faker<RequestCreateDeposit>()
+                .RuleFor(d => d.Amount, (f) => f.Finance.Amount(0, 1000).ToString())
+                .RuleFor(d => d.Description, f => f.Lorem.Paragraph(characteres));                
+        }
+    }
+}

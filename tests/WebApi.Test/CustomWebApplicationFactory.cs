@@ -5,6 +5,7 @@ using Wallet.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Wallet.Infrasctucture.DataAccess;
+using System.Linq;
 
 namespace WebApi.Test
 {
@@ -47,6 +48,16 @@ namespace WebApi.Test
             dbContext.Users.Add(_user);
             dbContext.Wallet.Add(_wallet);
             dbContext.SaveChanges();
+        }
+
+        public void SetWalletStatus(Guid userIdentifier, Wallet.Domain.Enum.WalletStatus status)
+        {
+            using var scope = Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<WalletDbContext>();
+            var user = db.Users.Single(u => u.UserIdentifier == userIdentifier);
+            var wallet = db.Wallet.Single(w => w.UserId == user.Id);
+            wallet.Status = status;
+            db.SaveChanges();
         }
     }
 }

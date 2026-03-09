@@ -26,6 +26,7 @@ namespace Wallet.Application.UseCases
         {
             return ruleBuilder
                 .NotNull().WithMessage(ResourceMessageException.TRANSACTIONAL_AMOUNT_NOT_NULL)
+                .NotEmpty().WithMessage(ResourceMessageException.TRANSACTIONAL_AMOUNT_NOT_NULL)
                 .GreaterThan(0).WithMessage(ResourceMessageException.TRASANCTIONAL_AMOUNT_GREATER_THAN_0);
         }
     }
