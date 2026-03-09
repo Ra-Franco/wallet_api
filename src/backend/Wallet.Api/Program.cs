@@ -9,7 +9,6 @@ using Wallet.Infrasctructure.Migrations;
 using Wallet.Infrasctucture;
 
 const string AUTHENTICATION_TYPE = "Bearer";
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

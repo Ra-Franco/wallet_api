@@ -174,4 +174,16 @@
   <data name="TRANSACTIONAL_PASSWORD_IS_NULL" xml:space="preserve">
     <value>The user not have transaction password.</value>
   </data>
+  <data name="TRANSACTIONAL_AMOUNT_NOT_NULL" xml:space="preserve">
+    <value>The value of amount cant be null.</value>
+  </data>
+  <data name="TRASANCTIONAL_AMOUNT_GREATER_THAN_0" xml:space="preserve">
+    <value>The value of amount has to be greater than 0.</value>
+  </data>
+  <data name="TRANSACTIONAL_DESCRIPTION_MAX_LENGTH" xml:space="preserve">
+    <value>The description exceed the max length.</value>
+  </data>
+  <data name="WALLET_NOT_ACTIVE" xml:space="preserve">
+    <value>The wallet is not active, please contac support.</value>
+  </data>
 </root>

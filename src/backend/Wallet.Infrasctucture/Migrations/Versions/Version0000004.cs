@@ -9,13 +9,13 @@ namespace Wallet.Infrasctructure.Migrations.Versions
         public override void Up()
         {
             CreateTable("Transactions")
-                .WithColumn("transactional_number").AsString(50).NotNullable()
+                .WithColumn("transaction_number").AsString(50).NotNullable()
                 .WithColumn("wallet_id").AsInt64().NotNullable()
                     .ForeignKey("wallet", "id")
                 .WithColumn("type").AsInt32().NotNullable()
                 .WithColumn("status").AsInt32().NotNullable().WithDefaultValue(1)
                 .WithColumn("amount").AsDecimal(19, 4).NotNullable()
-                .WithColumn("related_wallet_id").AsInt64().NotNullable()
+                .WithColumn("related_wallet_id").AsInt64().Nullable()
                     .ForeignKey("wallet", "id")
                 .WithColumn("description").AsString(500).Nullable()
                 .WithColumn("transaction_date").AsDateTime().NotNullable();

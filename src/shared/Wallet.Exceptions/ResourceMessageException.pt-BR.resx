@@ -174,4 +174,16 @@
   <data name="TRANSACTIONAL_PASSWORD_IS_NULL" xml:space="preserve">
     <value>O usuário não tem a senha para transação.</value>
   </data>
+  <data name="TRANSACTIONAL_AMOUNT_NOT_NULL" xml:space="preserve">
+    <value>O valor da quantia não pode ser vazio.</value>
+  </data>
+  <data name="TRASANCTIONAL_AMOUNT_GREATER_THAN_0" xml:space="preserve">
+    <value>O valor da quantia tem que ser maior que 0.</value>
+  </data>
+  <data name="TRANSACTIONAL_DESCRIPTION_MAX_LENGTH" xml:space="preserve">
+    <value>A descrição excedeu o limite de caracteres.</value>
+  </data>
+  <data name="WALLET_NOT_ACTIVE" xml:space="preserve">
+    <value>A carteira não está ativa, por favor contate o suporte.</value>
+  </data>
 </root>

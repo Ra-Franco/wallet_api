@@ -33,5 +33,12 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.Wallet
         public async Task UpdateTransactionPassword(string transactionPassword, WalletEntity wallet) => _dbContext
                 .Wallet
                 .Update(wallet);
+
+        public async Task Update(WalletEntity wallet)
+        {
+            _dbContext
+                .Wallet
+                .Update(wallet);
+        }
     }
 }

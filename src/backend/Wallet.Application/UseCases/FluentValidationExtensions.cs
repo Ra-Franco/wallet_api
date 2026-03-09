@@ -21,5 +21,12 @@ namespace Wallet.Application.UseCases
                 .Length(6).WithMessage(ResourceMessageException.TRANSACTIONAL_PASSWORD_LENGTH)
                 .Matches(@"^\d+$").WithMessage(ResourceMessageException.TRANSACTIONAL_PASSWORD_ONLY_NUMBER);
         }
+
+        public static IRuleBuilderOptions<T, decimal>TransactionalAmountValidator<T>(this IRuleBuilder<T, decimal> ruleBuilder)
+        {
+            return ruleBuilder
+                .NotNull().WithMessage(ResourceMessageException.TRANSACTIONAL_AMOUNT_NOT_NULL)
+                .GreaterThan(0).WithMessage(ResourceMessageException.TRASANCTIONAL_AMOUNT_GREATER_THAN_0);
+        }
     }
 }

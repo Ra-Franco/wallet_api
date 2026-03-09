@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using System.Globalization;
 using Wallet.Communication.Requests;
+using Wallet.Communication.Requests.Deposit;
+using Wallet.Communication.Responses.Transaction;
 using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Entities;
 
@@ -23,10 +25,14 @@ namespace MyRecipeBook.Application.Services.AutoMapper
 
         private void DomainToResponse()
         {
-            CreateMap<Wallet.Domain.Entities.WalletEntity, ResponseWalletDashboard>()
+            CreateMap<WalletEntity, ResponseWalletDashboard>()
                 .ForMember(dest => dest.HasTransactionPassword,
                     opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.TransactionPassword)))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+            CreateMap<Transaction, ResponseTransaction>()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+                .ForMember(dest => dest.TransactionType, opt => opt.MapFrom(src => src.Type.ToString()))
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.TransactionDate));
         }
     }
 }

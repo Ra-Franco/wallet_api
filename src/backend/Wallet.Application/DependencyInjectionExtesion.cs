@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MyRecipeBook.Application.Services.AutoMapper;
 using MyRecipeBook.Application.Services.Cryptography;
 using Wallet.Application.UseCases.Auth.Login;
+using Wallet.Application.UseCases.Transaction.Deposits;
 using Wallet.Application.UseCases.User.Register;
 using Wallet.Application.UseCases.Wallet.Add;
 using Wallet.Application.UseCases.Wallet.CreateTransactionalPassword;
@@ -36,6 +37,7 @@ namespace Wallet.Application
             services.AddScoped<IRegisterWalletUseCase, RegisterWalletUseCase>();
             services.AddScoped<ISetTransactionalPassword, SetTransactionalPassword>();
             services.AddScoped<IWalletDasboardUseCase, WalletDasboardUseCase>();
+            services.AddScoped<ICreateDepositUseCase, CreateDepositUseCase>();
         }
 
         private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)

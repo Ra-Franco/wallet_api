@@ -169,6 +169,24 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The value of amount cant be null..
+        /// </summary>
+        public static string TRANSACTIONAL_AMOUNT_NOT_NULL {
+            get {
+                return ResourceManager.GetString("TRANSACTIONAL_AMOUNT_NOT_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The description exceed the max length..
+        /// </summary>
+        public static string TRANSACTIONAL_DESCRIPTION_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("TRANSACTIONAL_DESCRIPTION_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The user not have transaction password..
         /// </summary>
         public static string TRANSACTIONAL_PASSWORD_IS_NULL {
@@ -205,6 +223,15 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The value of amount has to be greater than 0..
+        /// </summary>
+        public static string TRASANCTIONAL_AMOUNT_GREATER_THAN_0 {
+            get {
+                return ResourceManager.GetString("TRASANCTIONAL_AMOUNT_GREATER_THAN_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The user has not permission..
         /// </summary>
         public static string UNAUTHORIZED_ERROR {
@@ -219,6 +246,15 @@ namespace Wallet.Exceptions {
         public static string UNKNOW_ERROR {
             get {
                 return ResourceManager.GetString("UNKNOW_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The wallet is not active, please contac support..
+        /// </summary>
+        public static string WALLET_NOT_ACTIVE {
+            get {
+                return ResourceManager.GetString("WALLET_NOT_ACTIVE", resourceCulture);
             }
         }
         

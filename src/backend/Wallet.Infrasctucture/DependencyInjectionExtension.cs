@@ -6,11 +6,13 @@ using System.Reflection;
 using Wallet.Application.Services.LoggedUser;
 using Wallet.Application.Tokens;
 using Wallet.Domain.Repositories;
+using Wallet.Domain.Repositories.Transactions;
 using Wallet.Domain.Repositories.User;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Domain.Security.Cryptography;
 using Wallet.Domain.Services.TransactionNumber;
 using Wallet.Infrasctructure.DataAccess;
+using Wallet.Infrasctructure.DataAccess.Repositories.Transactions;
 using Wallet.Infrasctructure.DataAccess.Repositories.User;
 using Wallet.Infrasctructure.DataAccess.Repositories.Wallet;
 using Wallet.Infrasctructure.Extensions;
@@ -56,6 +58,8 @@ namespace Wallet.Infrasctucture
             services.AddScoped<IUserRepositoryWriteOnly, UserRepository>();
             services.AddScoped<IWalletWriteOnlyRepository, WalletRepository>();
             services.AddScoped<IWalletReadOnlyRepository, WalletRepository>();
+            services.AddScoped<ITransactionWriteOnlyRepository, TransactionRepository>();
+            services.AddScoped<ITransactionReadOnlyRepository, TransactionRepository>();
         }
 
         private static void AddTokens(IServiceCollection services, IConfiguration configuration)

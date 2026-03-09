@@ -1,4 +1,5 @@
-﻿using Wallet.Domain.Entities;
+﻿using System.Linq.Expressions;
+using Wallet.Domain.Entities;
 
 namespace Wallet.Domain.Repositories.Wallet
 {
@@ -7,5 +8,6 @@ namespace Wallet.Domain.Repositories.Wallet
         public Task CreateWallet(Entities.WalletEntity wallet);
 
         public Task UpdateTransactionPassword(string transactionPassword, WalletEntity wallet);
+        public Task Update(WalletEntity wallet);
     }
 }
