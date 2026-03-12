@@ -5,6 +5,7 @@ using Wallet.Communication.Requests.Deposit;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Entities;
+using Wallet.Domain.Utils.Page;
 
 namespace MyRecipeBook.Application.Services.AutoMapper
 {
@@ -33,6 +34,14 @@ namespace MyRecipeBook.Application.Services.AutoMapper
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.TransactionType, opt => opt.MapFrom(src => src.Type.ToString()))
                 .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.TransactionDate));
+            CreateMap<PagedList<Transaction>, PagedList<ResponseTransaction>>()
+                .ConvertUsing((src, _, context) =>
+                    new PagedList<ResponseTransaction>(
+                        context.Mapper.Map<List<ResponseTransaction>>(src.Items),
+                        src.Page,
+                        src.PageSize,
+                        src.TotalCount
+                    ));
         }
     }
 }
