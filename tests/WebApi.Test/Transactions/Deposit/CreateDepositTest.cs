@@ -3,10 +3,8 @@ using CommonTestUtilities.Token;
 using FluentAssertions;
 using System.Net;
 using System.Text.Json;
-using Wallet.Communication.Requests.Deposit;
 using Wallet.Domain.Enum;
 using Wallet.Exceptions;
-using Wallet.Infrasctucture.DataAccess;
 
 namespace WebApi.Test.Transactions.Deposit
 {

@@ -54,7 +54,6 @@ namespace WebApi.Test
             if (string.IsNullOrWhiteSpace(token))
                 return;
 
-            // Use explicit header string to ensure it is forwarded in integration tests
             if (_httpClient.DefaultRequestHeaders.Contains("Authorization"))
                 _httpClient.DefaultRequestHeaders.Remove("Authorization");
 

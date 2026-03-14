@@ -14,6 +14,7 @@ namespace WebApi.Test
         private string _password = string.Empty;
         private User _user = default!;
         private WalletEntity _wallet = default!;
+        private IList<Transaction> _transactionList = default!;
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Test")
@@ -45,8 +46,11 @@ namespace WebApi.Test
         {
             (_user, _password) = UserBuilder.Build();
             _wallet = WalletBuilder.Build(_user);
+            _transactionList = TransactionBuilder.BuildList(_wallet.Id);
             dbContext.Users.Add(_user);
             dbContext.Wallet.Add(_wallet);
+            for (var i = 0; i < _transactionList.Count; i++)
+                dbContext.Transactions.Add(_transactionList[i]);
             dbContext.SaveChanges();
         }
 
