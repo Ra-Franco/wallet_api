@@ -40,5 +40,27 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.Wallet
                 .Wallet
                 .Update(wallet);
         }
+
+        public async Task<string?> GetTransactionalPasswordByUserId(long userId)
+        {
+            return await _dbContext
+                .Wallet
+                .Where(w => w.UserId.Equals(userId))
+                .Select(w => w.TransactionPassword)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<WalletEntity?> FindWalletByCpf(string cpf)
+        {
+            return await _dbContext
+                .Wallet
+                .Join(_dbContext.Users,
+                    w => w.UserId,
+                    u => u.Id,
+                    (w, u) => new { Wallet = w, User = u })
+                .Where(x => x.User.CPF.Equals(cpf))
+                .Select(x => x.Wallet)
+                .FirstOrDefaultAsync();
+        }
     }
 }

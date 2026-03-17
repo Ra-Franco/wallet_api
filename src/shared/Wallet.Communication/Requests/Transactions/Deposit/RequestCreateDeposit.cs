@@ -1,4 +1,4 @@
-﻿namespace Wallet.Communication.Requests.Deposit
+﻿namespace Wallet.Communication.Requests.Transactions.Deposit
 {
     public class RequestCreateDeposit
     {

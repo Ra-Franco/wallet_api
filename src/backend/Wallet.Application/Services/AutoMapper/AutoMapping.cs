@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Globalization;
 using Wallet.Communication.Requests;
-using Wallet.Communication.Requests.Deposit;
+using Wallet.Communication.Requests.Transactions.Transfer;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Entities;

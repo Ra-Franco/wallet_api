@@ -4,6 +4,7 @@ using Wallet.Domain.Enum;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Exceptions.Wallet;
 
 namespace Wallet.Api.Filters
 {

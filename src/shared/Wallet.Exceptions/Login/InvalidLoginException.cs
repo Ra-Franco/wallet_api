@@ -1,6 +1,7 @@
 ﻿using System.Net;
+using Wallet.Exceptions.Wallet;
 
-namespace Wallet.Exceptions.ExceptionsBase
+namespace Wallet.Exceptions.Login
 {
     public class InvalidLoginException : WalletException
     {

@@ -186,4 +186,13 @@
   <data name="WALLET_NOT_ACTIVE" xml:space="preserve">
     <value>A carteira não está ativa, por favor contate o suporte.</value>
   </data>
+  <data name="TRANSACTIONAL_PASSWORD_INVALID" xml:space="preserve">
+    <value>A senha é invalida. </value>
+  </data>
+  <data name="AMOUNT_NOT_AVALIABLE" xml:space="preserve">
+    <value>A quantia não está disponível para essa carteira.</value>
+  </data>
+  <data name="RECEIVER_WALLET_NOT_FOUND" xml:space="preserve">
+    <value>A carteira do recebedor não foi encontrada.</value>
+  </data>
 </root>

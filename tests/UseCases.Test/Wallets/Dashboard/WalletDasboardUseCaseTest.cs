@@ -8,6 +8,7 @@ using Wallet.Application.UseCases.Wallet.Get;
 using Wallet.Domain.Entities;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Exceptions.TransactionalPassword;
 
 namespace UseCases.Test.Wallets.Dashboard
 {

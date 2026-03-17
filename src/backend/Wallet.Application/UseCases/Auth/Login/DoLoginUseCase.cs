@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.Options;
-using Wallet.Application.Tokens;
+﻿using Wallet.Application.Tokens;
 using Wallet.Communication.Requests.Login;
 using Wallet.Communication.Responses.Token;
 using Wallet.Domain.Repositories.User;
 using Wallet.Domain.Security.Cryptography;
-using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Exceptions.Login;
 
 namespace Wallet.Application.UseCases.Auth.Login
 {

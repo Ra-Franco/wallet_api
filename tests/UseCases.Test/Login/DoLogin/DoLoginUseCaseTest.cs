@@ -8,7 +8,7 @@ using FluentAssertions;
 using Wallet.Application.UseCases.Auth.Login;
 using Wallet.Communication.Requests.Login;
 using Wallet.Exceptions;
-using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Exceptions.Login;
 
 namespace UseCases.Test.Login.DoLogin
 {

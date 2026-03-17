@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
 using Wallet.Communication.Responses;
 using Wallet.Exceptions;
-using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Exceptions.Wallet;
 
 namespace Wallet.Api.Filters
 {

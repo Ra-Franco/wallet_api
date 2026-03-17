@@ -1,6 +1,7 @@
 ﻿using System.Net;
+using Wallet.Exceptions.ExceptionsBase;
 
-namespace Wallet.Exceptions.ExceptionsBase
+namespace Wallet.Exceptions.TransactionalPassword
 {
     public class TransactionPasswordNotFound : NotFoundException
     {

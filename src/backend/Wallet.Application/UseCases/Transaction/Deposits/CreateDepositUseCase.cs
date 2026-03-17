@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Globalization;
 using Wallet.Application.Services.LoggedUser;
-using Wallet.Communication.Requests.Deposit;
+using Wallet.Communication.Requests.Transactions.Deposit;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Domain.Enum;
 using Wallet.Domain.Repositories;

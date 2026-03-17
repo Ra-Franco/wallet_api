@@ -1,4 +1,4 @@
-﻿using Wallet.Communication.Requests.Deposit;
+﻿using Wallet.Communication.Requests.Transactions.Deposit;
 using Wallet.Communication.Responses.Transaction;
 
 namespace Wallet.Application.UseCases.Transaction.Deposits

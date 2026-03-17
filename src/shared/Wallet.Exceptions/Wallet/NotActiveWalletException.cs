@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Wallet.Exceptions.ExceptionsBase
+namespace Wallet.Exceptions.Wallet
 {
     public class NotActiveWalletException : WalletException
     {

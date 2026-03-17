@@ -1,10 +1,7 @@
-﻿using CommonTestUtilities.Requests;
-using CommonTestUtilities.Token;
+﻿using CommonTestUtilities.Token;
 using FluentAssertions;
 using System.Net;
 using System.Text.Json;
-using Wallet.Domain.Enum;
-using Wallet.Exceptions;
 
 namespace WebApi.Test.Transactions.GetDeposits
 {

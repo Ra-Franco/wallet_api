@@ -61,6 +61,15 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The amount is not avaliable to this wallet..
+        /// </summary>
+        public static string AMOUNT_NOT_AVALIABLE {
+            get {
+                return ResourceManager.GetString("AMOUNT_NOT_AVALIABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a CPF already exists..
         /// </summary>
         public static string CPF_ALREADY_EXIST {
@@ -169,6 +178,15 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The receiver wallet has not been found. \.
+        /// </summary>
+        public static string RECEIVER_WALLET_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("RECEIVER_WALLET_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The value of amount cant be null..
         /// </summary>
         public static string TRANSACTIONAL_AMOUNT_NOT_NULL {
@@ -183,6 +201,15 @@ namespace Wallet.Exceptions {
         public static string TRANSACTIONAL_DESCRIPTION_MAX_LENGTH {
             get {
                 return ResourceManager.GetString("TRANSACTIONAL_DESCRIPTION_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The transactional password is invalid..
+        /// </summary>
+        public static string TRANSACTIONAL_PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("TRANSACTIONAL_PASSWORD_INVALID", resourceCulture);
             }
         }
         

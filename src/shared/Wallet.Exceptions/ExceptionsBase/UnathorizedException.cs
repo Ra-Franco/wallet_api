@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Wallet.Exceptions.Wallet;
 
 namespace Wallet.Exceptions.ExceptionsBase
 {

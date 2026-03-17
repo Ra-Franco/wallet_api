@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Wallet.Api.Attributes;
 using Wallet.Api.Filters;
 using Wallet.Application.UseCases.Transaction.Deposits;
 using Wallet.Application.UseCases.Transaction.Get;
-using Wallet.Communication.Requests.Deposit;
+using Wallet.Application.UseCases.Transaction.Transfer;
 using Wallet.Communication.Requests.Transactions;
+using Wallet.Communication.Requests.Transactions.Deposit;
+using Wallet.Communication.Requests.Transactions.Transfer;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Domain.Utils.Page;
 
@@ -40,5 +41,18 @@ namespace Wallet.Api.Controllers
             var response = await useCase.Execute(requestFilter, pageParameters);
             return Ok(response);
         }
+
+        [HttpPost("transfer")]
+        [AuthenticadedUser]
+        [RequireActiveWallet]
+        [ProducesResponseType(typeof(ResponseTransfer), StatusCodes.Status201Created)]
+        public async Task<IActionResult> DoTransfer(
+            [FromServices] IDoTransferUseCase useCase,
+            [FromBody] RequestTransfer request
+            )
+        {
+            var response = await useCase.Execute(request);
+            return Created(string.Empty, response);
+        } 
     }
 }

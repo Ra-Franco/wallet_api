@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using System.Globalization;
-using Wallet.Communication.Requests.Deposit;
+using Wallet.Communication.Requests.Transactions.Deposit;
 using Wallet.Exceptions;
 
 namespace Wallet.Application.UseCases.Transaction.Deposits

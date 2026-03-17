@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using Wallet.Communication.Requests.Deposit;
+using Wallet.Communication.Requests.Transactions.Deposit;
 
 namespace CommonTestUtilities.Requests
 {

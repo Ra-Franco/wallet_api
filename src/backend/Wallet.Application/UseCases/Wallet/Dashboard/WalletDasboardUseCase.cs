@@ -4,6 +4,7 @@ using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Exceptions.TransactionalPassword;
 
 namespace Wallet.Application.UseCases.Wallet.Get
 {
