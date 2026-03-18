@@ -12,9 +12,9 @@ namespace CommonTestUtilities.Entities
                 .RuleFor(w => w.UserId, _ => user.Id)
                 .RuleFor(w => w.Balance, f => f.Finance.Amount(0, 5000))
                 .RuleFor(w => w.PendingBalance, f => f.Finance.Amount(0, 1000))
-                .RuleFor(w => w.TransactionPassword, f => f.Internet.Password(8))
+                .RuleFor(w => w.TransactionPassword, (f) => f.Internet.Password(6, regexPattern: @"^\d+$"))
                 .RuleFor(w => w.Status, status)
-                .RuleFor(w => w.Id, () => 1);
+                .RuleFor(w => w.Id, user.Id);
         }
     }
 }

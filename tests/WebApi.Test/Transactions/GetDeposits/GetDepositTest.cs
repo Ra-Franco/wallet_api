@@ -21,7 +21,7 @@ namespace WebApi.Test.Transactions.GetDeposits
         {
             var token = JwtTokenGeneratorBuilder.Build().Generate(_userIdentifier);
 
-            var response = await DoGet(ROUTE, token);
+            var response = await DoGet(ROUTE, token, culture: "en");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             await using var responseBody = await response.Content.ReadAsStreamAsync();
 

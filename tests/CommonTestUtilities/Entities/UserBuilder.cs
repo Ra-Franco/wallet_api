@@ -15,7 +15,7 @@ namespace CommonTestUtilities.Entities
             var password = new Faker().Internet.Password();
 
             var user = new Faker<User>()
-                .RuleFor(user => user.Id, () => 1)
+                .RuleFor(user => user.Id, (f) => f.Random.Number(1,1000))
                 .RuleFor(user => user.Name, (f) => f.Person.FirstName)
                 .RuleFor(user => user.Email, (f, u) => f.Internet.Email(u.Name))
                 .RuleFor(user => user.UserIdentifier, _ => Guid.NewGuid())
@@ -26,7 +26,6 @@ namespace CommonTestUtilities.Entities
                 .RuleFor(user => user.Phonenumber, f => f.Phone.PhoneNumber("(##) #####-####"))
                 .RuleFor(user => user.Occupation, f => f.Name.JobTitle())
                 .RuleFor(user => user.Income, f => f.Finance.Amount(1500, 10000))
-                // Ensure test users are Active to avoid intermittent unauthorized results
                 .RuleFor(user => user.Status, f => UserStatus.Active);
 
             return (user, password);

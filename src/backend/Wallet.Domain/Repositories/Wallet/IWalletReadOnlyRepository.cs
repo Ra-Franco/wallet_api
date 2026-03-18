@@ -6,7 +6,7 @@ namespace Wallet.Domain.Repositories.Wallet
     {
         public Task<Entities.WalletEntity> FindWalletByUserId(long userId);
 
-        public Task<Entities.WalletEntity> GetWalletDashboard(long userId);
+        public Task<Entities.WalletEntity?> GetWalletDashboard(long userId);
 
         public Task<string?> GetTransactionalPasswordByUserId(long userId);
 

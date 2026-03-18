@@ -1,4 +1,5 @@
 ﻿using Moq;
+using Wallet.Domain.Entities;
 using Wallet.Domain.Repositories.Wallet;
 
 namespace CommonTestUtilities.Repositories.Wallets
@@ -18,7 +19,12 @@ namespace CommonTestUtilities.Repositories.Wallets
 
         public void GetWalletDashboard(Wallet.Domain.Entities.WalletEntity wallet)
         {
-            _repository.Setup(repo => repo.GetWalletDashboard(wallet.Id)).ReturnsAsync(wallet);
+            _repository.Setup(repo => repo.GetWalletDashboard(wallet.UserId)).ReturnsAsync(wallet);
+        }
+
+        public void FindWalletByCpf(string cpf, WalletEntity wallet)
+        {
+            _repository.Setup(repo => repo.FindWalletByCpf(cpf)).ReturnsAsync(wallet);
         }
     }
 }

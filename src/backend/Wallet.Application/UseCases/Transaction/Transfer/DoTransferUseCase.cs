@@ -27,7 +27,7 @@ namespace Wallet.Application.UseCases.Transaction.Transfer
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWalletWriteOnlyRepository _walletWriteRepo;
 
-        public DoTransferUseCase(ILoggedUser loggedUser, ITransferPasswordValidator transferPasswordValidator, ITransactionWriteOnlyRepository transactionWriteRepo, IWalletReadOnlyRepository walletReadRepo, ITransactionNumberGenerator transactionNumberGenerator = null, IUnitOfWork unitOfWork = null, IWalletWriteOnlyRepository walletWriteRepo = null, IMapper mapper = null)
+        public DoTransferUseCase(ILoggedUser loggedUser, ITransferPasswordValidator transferPasswordValidator, ITransactionWriteOnlyRepository transactionWriteRepo, IWalletReadOnlyRepository walletReadRepo, ITransactionNumberGenerator transactionNumberGenerator, IUnitOfWork unitOfWork, IWalletWriteOnlyRepository walletWriteRepo)
         {
             _loggedUser = loggedUser;
             _transferPasswordValidator = transferPasswordValidator;
@@ -123,5 +123,5 @@ namespace Wallet.Application.UseCases.Transaction.Transfer
                 throw new ErrorOnValidationException(errorMessages);
             }
         }
-}
+    }
 }

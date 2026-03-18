@@ -5,7 +5,8 @@ using Wallet.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Wallet.Infrasctucture.DataAccess;
-using System.Linq;
+using Wallet.Domain.Security.Cryptography;
+using Wallet.Domain.Enum;
 
 namespace WebApi.Test
 {
@@ -15,6 +16,10 @@ namespace WebApi.Test
         private User _user = default!;
         private WalletEntity _wallet = default!;
         private IList<Transaction> _transactionList = default!;
+        private IPasswordEncrypt _passwordEncrypt = default!;
+        private string _transactionalPassowrd = string.Empty;
+        private User _userReceiver = default!;
+        private WalletEntity _walletReceiver = default!;
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Test")
@@ -33,22 +38,34 @@ namespace WebApi.Test
                     });
                     using var scope = services.BuildServiceProvider().CreateScope();
                     var dbContext = scope.ServiceProvider.GetRequiredService<WalletDbContext>();
+                    _passwordEncrypt = scope.ServiceProvider.GetRequiredService<IPasswordEncrypt>();
 
                     dbContext.Database.EnsureDeleted();
 
-                    StartDatabase(dbContext);
+                    StartDatabase(dbContext, services);
                 });
         }
         public string getCpf() => _user.CPF;
         public string getPassword() => _password;
         public Guid getUserIdentifier() => _user.UserIdentifier;
-        private void StartDatabase(WalletDbContext dbContext)
+        public string getTransactionalPassword() => _transactionalPassowrd;
+
+        public string getCpfReceiver() => _userReceiver.CPF;
+        private void StartDatabase(WalletDbContext dbContext, IServiceCollection services)
         {
             (_user, _password) = UserBuilder.Build();
-            _wallet = WalletBuilder.Build(_user);
+            _wallet = WalletBuilder.Build(_user, WalletStatus.Active);
             _transactionList = TransactionBuilder.BuildList(_wallet.Id);
-            dbContext.Users.Add(_user);
-            dbContext.Wallet.Add(_wallet);
+
+            (_userReceiver, _) = UserBuilder.Build();
+            _walletReceiver = WalletBuilder.Build(_userReceiver, WalletStatus.Active);
+
+            dbContext.Users.AddRange(_user,_userReceiver);
+
+            _transactionalPassowrd = _wallet.TransactionPassword;
+            _wallet.TransactionPassword = _passwordEncrypt.Encrypt(_wallet.TransactionPassword);
+            dbContext.Wallet.AddRange(_wallet, _walletReceiver);
+            
             for (var i = 0; i < _transactionList.Count; i++)
                 dbContext.Transactions.Add(_transactionList[i]);
             dbContext.SaveChanges();

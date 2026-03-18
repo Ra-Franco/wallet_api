@@ -18,7 +18,6 @@ namespace UseCases.Test.Wallets.Dashboard
         public async Task Success()
         {
             (var user, var _) = UserBuilder.Build();
-            var loggedUser = LoggedUserBuilder.Build(user);
             var wallet = WalletBuilder.Build(user);
 
             var useCase = CreateUseCase(user, wallet);
@@ -26,7 +25,7 @@ namespace UseCases.Test.Wallets.Dashboard
             var response = await useCase.Execute();
 
             response.Should().NotBeNull();
-            response.Id.Should().Be((int)wallet.Id);
+            response.Id.Should().Be(wallet.Id);
             response.HasTransactionPassword.Should().BeTrue();
         }
 
@@ -34,7 +33,7 @@ namespace UseCases.Test.Wallets.Dashboard
         public async Task Error_Wallet_Not_Found()
         {
             (var user, var _) = UserBuilder.Build();
-            var loggedUser = LoggedUserBuilder.Build(user);
+
             var wallet = WalletBuilder.Build(user);
             user.Id = 9999;
             var useCase = CreateUseCase(user, wallet);
@@ -50,7 +49,7 @@ namespace UseCases.Test.Wallets.Dashboard
         public async Task Error_Transactional_Password_Not_Found()
         {
             (var user, var _) = UserBuilder.Build();
-            var loggedUser = LoggedUserBuilder.Build(user);
+
             var wallet = WalletBuilder.Build(user);
             wallet.TransactionPassword = string.Empty;
             var useCase = CreateUseCase(user, wallet);
@@ -62,7 +61,7 @@ namespace UseCases.Test.Wallets.Dashboard
                         e.GetErrorMessages().Contains(ResourceMessageException.TRANSACTIONAL_PASSWORD_IS_NULL));
         }
 
-        private WalletDasboardUseCase CreateUseCase(Wallet.Domain.Entities.User user, WalletEntity? wallet)
+        private WalletDasboardUseCase CreateUseCase(User user, WalletEntity? wallet)
         {
             var loggedUser = LoggedUserBuilder.Build(user);
             var repository = new WalletReadOnlyRepositoryBuilder();
