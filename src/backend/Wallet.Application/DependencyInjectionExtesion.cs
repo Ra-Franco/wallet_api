@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging.Abstractions;
 using MyRecipeBook.Application.Services.AutoMapper;
 using MyRecipeBook.Application.Services.Cryptography;
 using Wallet.Application.Services.PasswordTransactional;
@@ -32,7 +33,7 @@ namespace Wallet.Application
             services.AddScoped(option => new AutoMapper.MapperConfiguration(option =>
             {
                 option.AddProfile(new AutoMapping());
-            }).CreateMapper());
+            }, NullLoggerFactory.Instance).CreateMapper());
         }
 
         private static void AddUseCases(IServiceCollection services)

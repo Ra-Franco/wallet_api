@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using MyRecipeBook.Application.Services.AutoMapper;
 
 namespace CommonTestUtilities.Services
@@ -11,7 +13,7 @@ namespace CommonTestUtilities.Services
             return new MapperConfiguration(options =>
             {
                 options.AddProfile(new AutoMapping());
-            }).CreateMapper();
+            }, NullLoggerFactory.Instance).CreateMapper();
         }
     }
 }
