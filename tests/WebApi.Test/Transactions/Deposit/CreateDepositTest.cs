@@ -25,7 +25,7 @@ namespace WebApi.Test.Transactions.Deposit
             var token = JwtTokenGeneratorBuilder.Build().Generate(_userIdentifier);
 
             var request = RequestCreateDepositBuilder.Build();
-
+            
             var response = await DoPost(ROUTE, request, token: token);
 
             response.StatusCode.Should().Be(HttpStatusCode.Created);
@@ -58,8 +58,9 @@ namespace WebApi.Test.Transactions.Deposit
             var request = RequestCreateDepositBuilder.Build();
             _factory.SetWalletStatus(_userIdentifier, WalletStatus.Suspended);
 
-
             var response = await DoPost(ROUTE, request, token: token, culture: "pt-BR");
+
+            _factory.SetWalletStatus(_userIdentifier, WalletStatus.Active);
 
             response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
             var body = await response.Content.ReadAsStringAsync();

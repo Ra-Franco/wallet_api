@@ -12,11 +12,11 @@ namespace Wallet.Api.Controllers
     [ApiController]
     public class WalletController : ControllerBase
     {
-        [HttpPost("/create-transactional-password")]
+        [HttpPost("set-transactional-password")]
         [AuthenticadedUser]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> CreateTransactionPassword(
+        public async Task<IActionResult> SetTransactionPassword(
             [FromServices] ISetTransactionalPassword useCase,
             [FromBody] RequestSetTransactionPasswordJson request
             ) 

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using System.Globalization;
 using Wallet.Communication.Requests.Transactions.Deposit;
+using Wallet.Communication.Utils;
 using Wallet.Exceptions;
 
 namespace Wallet.Application.UseCases.Transaction.Deposits
@@ -9,7 +10,7 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
     {
         public CreateDepositValidator()
         { 
-            RuleFor(t => decimal.Parse(t.Amount, CultureInfo.InvariantCulture)).TransactionalAmountValidator();
+            RuleFor(t => t.Amount.StringToDecimalCurrency()).TransactionalAmountValidator();
             RuleFor(t => t.Description).MaximumLength(500).WithMessage(ResourceMessageException.TRANSACTIONAL_DESCRIPTION_MAX_LENGTH);
         }
     }

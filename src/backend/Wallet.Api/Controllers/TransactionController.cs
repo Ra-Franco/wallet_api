@@ -29,13 +29,13 @@ namespace Wallet.Api.Controllers
             return Created(string.Empty,response);
         }
 
-        [HttpGet("deposit")]
+        [HttpGet]
         [AuthenticadedUser]
         [ProducesResponseType(typeof(List<ResponseTransaction>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetDeposits(
+        public async Task<IActionResult> GetTransactions(
             [FromQuery] RequestTransactionsFilter requestFilter,
             [FromQuery] PageParameters pageParameters,
-            [FromServices] IGetDeposits useCase 
+            [FromServices] IGetTransactionsUseCase useCase 
             )
         {
             var response = await useCase.Execute(requestFilter, pageParameters);

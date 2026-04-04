@@ -7,7 +7,7 @@ using Wallet.Domain.Security.Cryptography;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 
-namespace Wallet.Application.UseCases.Wallet.CreateTransactionalPassword
+namespace Wallet.Application.UseCases.Wallet.SetTransactionalPassword
 {
     public class SetTransactionalPassword : ISetTransactionalPassword
     {

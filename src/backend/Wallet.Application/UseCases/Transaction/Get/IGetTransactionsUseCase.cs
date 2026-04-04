@@ -4,7 +4,7 @@ using Wallet.Domain.Utils.Page;
 
 namespace Wallet.Application.UseCases.Transaction.Get
 {
-    public interface IGetDeposits
+    public interface IGetTransactionsUseCase
     {
         public Task<PagedList<ResponseTransaction>> Execute(RequestTransactionsFilter request, PageParameters pageParameters);
     }

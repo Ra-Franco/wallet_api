@@ -10,7 +10,7 @@ using Wallet.Domain.Utils.Page;
 
 namespace UseCases.Test.Transactions.GetTransactions
 {
-    public class GetDepositsUseCaseTest
+    public class GetTransactionsUseCaseTest
     {
 
         [Fact]
@@ -35,7 +35,7 @@ namespace UseCases.Test.Transactions.GetTransactions
             result.Items.Should().HaveCount(transactions.Count);
         }
 
-        private static GetDeposits CreateUseCase(User user, PagedList<Transaction> pagedList)
+        private static GetTransactionsUseCase CreateUseCase(User user, PagedList<Transaction> pagedList)
         {
             var loggedUser = LoggedUserBuilder.Build(user);
             var mapper = MapperBuilder.Build();
@@ -44,7 +44,7 @@ namespace UseCases.Test.Transactions.GetTransactions
             if (pagedList != null)
                 repository.GetTransactionsByUserId(user.Id, pagedList);
 
-            return new GetDeposits(repository.Build(), mapper, loggedUser);
+            return new GetTransactionsUseCase(repository.Build(), mapper, loggedUser);
         }   
     }
 }

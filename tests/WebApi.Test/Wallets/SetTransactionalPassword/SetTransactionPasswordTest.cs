@@ -3,13 +3,13 @@ using CommonTestUtilities.Token;
 using FluentAssertions;
 using System.Net;
 
-namespace WebApi.Test.Wallets.CreateTransactionalPassword
+namespace WebApi.Test.Wallets.SetTransactionalPassword
 {
-    public class CreateTransactionPasswordTest : WalletCustomClassFixture
+    public class SetTransactionPasswordTest : WalletCustomClassFixture
     {
-        private readonly string ROUTE = "create-transactional-password";
+        private readonly string ROUTE = "wallet/set-transactional-password";
         private readonly Guid _userIdentifier;
-        public CreateTransactionPasswordTest(CustomWebApplicationFactory factory) : base(factory)
+        public SetTransactionPasswordTest(CustomWebApplicationFactory factory) : base(factory)
         {
             _userIdentifier = factory.getUserIdentifier();
         }

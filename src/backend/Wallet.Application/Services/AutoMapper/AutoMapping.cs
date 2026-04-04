@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using System.Globalization;
 using Wallet.Communication.Requests;
-using Wallet.Communication.Requests.Transactions.Transfer;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Utils.Page;
+using Wallet.Communication.Utils;
 
 namespace MyRecipeBook.Application.Services.AutoMapper
 {
@@ -20,8 +20,7 @@ namespace MyRecipeBook.Application.Services.AutoMapper
         {
             CreateMap<RequestRegisterUserJson, User>()
                 .ForMember(dest => dest.Password, opt => opt.Ignore())
-                .ForMember(dest => dest.Income, opt => opt.MapFrom(src => 
-                                                            decimal.Parse(src.Income, CultureInfo.InvariantCulture)));
+                .ForMember(dest => dest.Income, opt => opt.MapFrom(src => src.Income.StringToDecimalCurrency()));
         }
 
         private void DomainToResponse()
@@ -30,10 +29,13 @@ namespace MyRecipeBook.Application.Services.AutoMapper
                 .ForMember(dest => dest.HasTransactionPassword,
                     opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.TransactionPassword)))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+
             CreateMap<Transaction, ResponseTransaction>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.TransactionType, opt => opt.MapFrom(src => src.Type.ToString()))
-                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.TransactionDate));
+                .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.TransactionDate))
+                .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount.DecimalPrecision()));
+
             CreateMap<PagedList<Transaction>, PagedList<ResponseTransaction>>()
                 .ConvertUsing((src, _, context) =>
                     new PagedList<ResponseTransaction>(

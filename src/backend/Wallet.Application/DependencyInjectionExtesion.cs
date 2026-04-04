@@ -10,7 +10,7 @@ using Wallet.Application.UseCases.Transaction.Get;
 using Wallet.Application.UseCases.Transaction.Transfer;
 using Wallet.Application.UseCases.User.Register;
 using Wallet.Application.UseCases.Wallet.Add;
-using Wallet.Application.UseCases.Wallet.CreateTransactionalPassword;
+using Wallet.Application.UseCases.Wallet.SetTransactionalPassword;
 using Wallet.Application.UseCases.Wallet.Get;
 using Wallet.Application.UseCases.Wallet.Register;
 using Wallet.Application.UseCases.Wallet.TransactionalPassword;
@@ -44,7 +44,7 @@ namespace Wallet.Application
             services.AddScoped<ISetTransactionalPassword, SetTransactionalPassword>();
             services.AddScoped<IWalletDasboardUseCase, WalletDasboardUseCase>();
             services.AddScoped<ICreateDepositUseCase, CreateDepositUseCase>();
-            services.AddScoped<IGetDeposits, GetDeposits>();
+            services.AddScoped<IGetTransactionsUseCase, GetTransactionsUseCase>();
             services.AddScoped<IDoTransferUseCase, DoTransferUseCase>();
         }
 

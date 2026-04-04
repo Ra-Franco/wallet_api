@@ -5,12 +5,12 @@ using System.Text.Json;
 
 namespace WebApi.Test.Transactions.GetDeposits
 {
-    public class GetDepositTest : WalletCustomClassFixture
+    public class GetTransactionsTest : WalletCustomClassFixture
     {
-        private readonly string ROUTE = "/transaction/deposit";
+        private readonly string ROUTE = "/transaction";
         private readonly Guid _userIdentifier;
         protected CustomWebApplicationFactory _factory { get; }
-        public GetDepositTest(CustomWebApplicationFactory factory) : base(factory)
+        public GetTransactionsTest(CustomWebApplicationFactory factory) : base(factory)
         {
             _factory = factory;
             _userIdentifier = factory.getUserIdentifier();

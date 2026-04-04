@@ -8,13 +8,13 @@ using Wallet.Domain.Utils.Page;
 
 namespace Wallet.Application.UseCases.Transaction.Get
 {
-    public class GetDeposits : IGetDeposits
+    public class GetTransactionsUseCase : IGetTransactionsUseCase
     {
         private readonly ITransactionReadOnlyRepository _readRepository;
         private readonly IMapper _mapper;
         private readonly ILoggedUser _loggedUser;
 
-        public GetDeposits(ITransactionReadOnlyRepository readRepository, IMapper mapper, ILoggedUser loggedUser)
+        public GetTransactionsUseCase(ITransactionReadOnlyRepository readRepository, IMapper mapper, ILoggedUser loggedUser)
         {
             _readRepository = readRepository;
             _mapper = mapper;

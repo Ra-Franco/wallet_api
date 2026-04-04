@@ -22,7 +22,7 @@ namespace Wallet.Api.Filters
 
             if (wallet is null)
                 throw new NotFoundException(ResourceMessageException.WALLET_NOT_FOUND);
-
+            
             if (wallet.Status != WalletStatus.Active)
                 throw new NotActiveWalletException(); 
 
