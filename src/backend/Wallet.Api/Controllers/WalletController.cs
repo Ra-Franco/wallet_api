@@ -12,7 +12,7 @@ namespace Wallet.Api.Controllers
     [ApiController]
     public class WalletController : ControllerBase
     {
-        [HttpPost("set-transactional-password")]
+        [HttpPut("set-transactional-password")]
         [AuthenticadedUser]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

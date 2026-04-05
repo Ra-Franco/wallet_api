@@ -1,17 +1,33 @@
 ﻿using CommonTestUtilities.Entities;
+using FluentMigrator;
+using FluentMigrator.Runner;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Wallet.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Wallet.Infrasctucture.DataAccess;
-using Wallet.Domain.Security.Cryptography;
+using Microsoft.Extensions.Options;
+using System.Globalization;
+using System.Reflection;
+using Testcontainers.MySql;
+using Wallet.Domain.Entities;
 using Wallet.Domain.Enum;
+using Wallet.Domain.Security.Cryptography;
+using Wallet.Infrasctructure.Migrations;
+using Wallet.Infrasctucture.DataAccess;
 
 namespace WebApi.Test
 {
-    public class CustomWebApplicationFactory : WebApplicationFactory<Program>
+    public class CustomWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
     {
+        private readonly MySqlContainer _mySqlContainer = new MySqlBuilder()
+            .WithImage("mysql:8.0.45")
+            .WithDatabase("wallet")
+            .WithUsername("root")
+            .WithPassword("teste123")
+            .Build();
+
         private string _password = string.Empty;
         private User _user = default!;
         private WalletEntity _wallet = default!;
@@ -25,23 +41,20 @@ namespace WebApi.Test
             builder.UseEnvironment("Test")
                 .ConfigureServices(services =>
                 {
-                    var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<WalletDbContext>));
-                    if (descriptor is not null)
-                        services.Remove(descriptor);
-
-                    var provider = services.AddEntityFrameworkInMemoryDatabase().BuildServiceProvider();
+                    var dbDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<WalletDbContext>));
+                    if (dbDescriptor is not null)
+                        services.Remove(dbDescriptor);
 
                     services.AddDbContext<WalletDbContext>(options =>
-                    {
-                        options.UseInMemoryDatabase("InMemoryDbForTesting");
-                        options.UseInternalServiceProvider(provider);
-                    });
+                        options.UseMySql(
+                            _mySqlContainer.GetConnectionString(),
+                            ServerVersion.AutoDetect(_mySqlContainer.GetConnectionString())));
+
                     using var scope = services.BuildServiceProvider().CreateScope();
                     var dbContext = scope.ServiceProvider.GetRequiredService<WalletDbContext>();
                     _passwordEncrypt = scope.ServiceProvider.GetRequiredService<IPasswordEncrypt>();
 
-                    dbContext.Database.EnsureDeleted();
-
+                    dbContext.Database.EnsureCreated();
                     StartDatabase(dbContext, services);
                 });
         }
@@ -80,5 +93,9 @@ namespace WebApi.Test
             wallet.Status = status;
             db.SaveChanges();
         }
+
+        public async Task InitializeAsync() => await _mySqlContainer.StartAsync();
+
+        async Task IAsyncLifetime.DisposeAsync() => await _mySqlContainer.DisposeAsync();
     }
 }

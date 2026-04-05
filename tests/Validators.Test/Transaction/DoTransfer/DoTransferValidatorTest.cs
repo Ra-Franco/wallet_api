@@ -5,7 +5,7 @@ using Wallet.Exceptions;
 
 namespace UseCases.Test.Transactions.DoTransfer
 {
-    public class DoTransferValidatorTest
+    public class DoWithdrawValidatorTest
     {
         [Fact]
         public async Task Success()

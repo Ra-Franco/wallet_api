@@ -108,7 +108,7 @@ namespace Wallet.Application.UseCases.Transaction.Transfer
             if (type.Equals(TransactionType.TransferSent))
                 wallet.Balance -= amount;
 
-            await _walletWriteRepo.Update(wallet);
+            await _walletWriteRepo.UpdateAmount(wallet.Id, wallet.Balance);
         }
 
         private async Task Validate(RequestTransfer request)

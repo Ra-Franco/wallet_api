@@ -3,6 +3,7 @@ using System.Globalization;
 using Wallet.Application.Services.LoggedUser;
 using Wallet.Communication.Requests.Transactions.Deposit;
 using Wallet.Communication.Responses.Transaction;
+using Wallet.Communication.Utils;
 using Wallet.Domain.Enum;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.Transactions;
@@ -39,7 +40,7 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
             await Validate(request);
             var loggedUser = await _loggedUser.User();
             var wallet = await _walletReadRepo.FindWalletByUserId(loggedUser.Id);
-            var amount = decimal.Parse(request.Amount, CultureInfo.CurrentCulture);
+            var amount = request.Amount.StringToDecimalCurrency();
 
             var transaction = new Domain.Entities.Transaction
             {
@@ -54,7 +55,7 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
             wallet.Balance = amount + wallet.Balance;
 
             await _transactionWriteRepo.Add(transaction);
-            await _walletWriteRepo.Update(wallet);
+            await _walletWriteRepo.UpdateAmount(wallet.Id, wallet.Balance);
             await _unitOfWork.Commit();
 
             var response = _mapper.Map<ResponseTransaction>(transaction);

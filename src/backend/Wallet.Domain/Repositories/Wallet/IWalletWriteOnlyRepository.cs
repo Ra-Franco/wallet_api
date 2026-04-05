@@ -7,7 +7,7 @@ namespace Wallet.Domain.Repositories.Wallet
     {
         public Task CreateWallet(Entities.WalletEntity wallet);
 
-        public Task UpdateTransactionPassword(string transactionPassword, WalletEntity wallet);
-        public Task Update(WalletEntity wallet);
+        public Task UpdateTransactionPassword(string transactionPassword, long walletId);
+        public Task UpdateAmount(long walletId, decimal balance);
     }
 }

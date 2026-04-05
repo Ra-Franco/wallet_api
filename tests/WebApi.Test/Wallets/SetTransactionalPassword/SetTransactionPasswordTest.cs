@@ -20,7 +20,7 @@ namespace WebApi.Test.Wallets.SetTransactionalPassword
             var request = RequestSetTransactionPasswordJsonBuilder.Build();
             var token = JwtTokenGeneratorBuilder.Build().Generate(_userIdentifier);
 
-            var response = await DoPost(ROUTE, request, token: token);
+            var response = await DoPut(ROUTE, request, token: token);
 
             response.StatusCode.Should().Be(HttpStatusCode.NoContent);
         }
@@ -31,7 +31,7 @@ namespace WebApi.Test.Wallets.SetTransactionalPassword
             var request = RequestSetTransactionPasswordJsonBuilder.Build();
             var token = JwtTokenGeneratorBuilder.Build().Generate(_userIdentifier);
             token = string.Empty;
-            var response = await DoPost(ROUTE, request, token: token);
+            var response = await DoPut(ROUTE, request, token: token);
 
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
         }
