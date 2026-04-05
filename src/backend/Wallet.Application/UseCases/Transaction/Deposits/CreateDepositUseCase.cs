@@ -35,7 +35,7 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
             _mapper = mapper;
         }
 
-        public async Task<ResponseTransaction> Execute(RequestCreateDeposit request)
+        public async Task<ResponseShortTransaction> Execute(RequestCreateDeposit request)
         {
             await Validate(request);
             var loggedUser = await _loggedUser.User();
@@ -58,7 +58,7 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
             await _walletWriteRepo.UpdateAmount(wallet.Id, wallet.Balance);
             await _unitOfWork.Commit();
 
-            var response = _mapper.Map<ResponseTransaction>(transaction);
+            var response = _mapper.Map<ResponseShortTransaction>(transaction);
             response.Amount = amount;
 
             return response;

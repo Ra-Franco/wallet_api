@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
-using Moq;
-using Wallet.Communication.Requests.Transactions;
+﻿using Moq;
 using Wallet.Domain.Dtos;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Repositories.Transactions;
@@ -19,6 +17,11 @@ namespace CommonTestUtilities.Repositories.Transactions
         public void GetTransactionsByUserId(long id, PagedList<Transaction> transactionList)
         {
             _repository.Setup(repo => repo.GetTransactionsByUserId(id, It.IsAny<FilterTransactionsDto>(), It.IsAny<PageParameters>())).ReturnsAsync(transactionList);
+        }
+
+        public void GetByTransactionNumber(string transactionNumber, long walletId, Transaction transaction)
+        {
+            _repository.Setup(repo => repo.GetByTransactionNumber(transactionNumber, walletId)).ReturnsAsync(transaction);
         }
     }
 }

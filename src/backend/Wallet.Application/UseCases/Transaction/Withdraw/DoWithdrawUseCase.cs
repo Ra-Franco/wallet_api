@@ -39,7 +39,7 @@ namespace Wallet.Application.UseCases.Transaction.Withdraw
             _transferPasswordValidator = transferPasswordValidator;
         }
 
-        public async Task<ResponseTransaction> Execute(RequestCreateWithdraw request)
+        public async Task<ResponseShortTransaction> Execute(RequestCreateWithdraw request)
         {
             await Validate(request);
             var user = await _loggedUser.User();
@@ -67,7 +67,7 @@ namespace Wallet.Application.UseCases.Transaction.Withdraw
             await _walletWriteRepository.UpdateAmount(wallet.Id, wallet.Balance);
             await _unitOfWork.Commit();
 
-            var response = _mapper.Map<ResponseTransaction>(transaction);
+            var response = _mapper.Map<ResponseShortTransaction>(transaction);
             response.Amount = amount;
 
             return response;

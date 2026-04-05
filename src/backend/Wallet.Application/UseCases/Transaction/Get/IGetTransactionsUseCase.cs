@@ -6,6 +6,6 @@ namespace Wallet.Application.UseCases.Transaction.Get
 {
     public interface IGetTransactionsUseCase
     {
-        public Task<PagedList<ResponseTransaction>> Execute(RequestTransactionsFilter request, PageParameters pageParameters);
+        public Task<PagedList<ResponseShortTransaction>> Execute(RequestTransactionsFilter request, PageParameters pageParameters);
     }
 }

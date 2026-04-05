@@ -7,5 +7,6 @@ namespace Wallet.Domain.Repositories.Transactions
     public interface ITransactionReadOnlyRepository
     {
         public Task<PagedList<Transaction>> GetTransactionsByUserId(long userId, FilterTransactionsDto filters, PageParameters pageParameters);
+        public Task<Transaction?> GetByTransactionNumber(string transactionNumber, long walletId);
     }
 }

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using System.Globalization;
 using Wallet.Communication.Requests;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Utils.Page;
 using Wallet.Communication.Utils;
+using System.Runtime.InteropServices;
 
 namespace MyRecipeBook.Application.Services.AutoMapper
 {
@@ -30,20 +30,24 @@ namespace MyRecipeBook.Application.Services.AutoMapper
                     opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.TransactionPassword)))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
 
-            CreateMap<Transaction, ResponseTransaction>()
+            CreateMap<Transaction, ResponseShortTransaction>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.TransactionType, opt => opt.MapFrom(src => src.Type.ToString()))
                 .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.TransactionDate))
                 .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount.DecimalPrecision()));
 
-            CreateMap<PagedList<Transaction>, PagedList<ResponseTransaction>>()
+            CreateMap<PagedList<Transaction>, PagedList<ResponseShortTransaction>>()
                 .ConvertUsing((src, _, context) =>
-                    new PagedList<ResponseTransaction>(
-                        context.Mapper.Map<List<ResponseTransaction>>(src.Items),
+                    new PagedList<ResponseShortTransaction>(
+                        context.Mapper.Map<List<ResponseShortTransaction>>(src.Items),
                         src.Page,
                         src.PageSize,
                         src.TotalCount
                     ));
+
+            CreateMap<Transaction, ResponseTransaction>()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.ToString()));
         }
     }
 }

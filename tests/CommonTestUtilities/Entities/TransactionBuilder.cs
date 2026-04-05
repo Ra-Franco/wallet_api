@@ -15,6 +15,7 @@ namespace CommonTestUtilities.Entities
                 .RuleFor(t => t.Type, f => f.PickRandom<TransactionType>())
                 .RuleFor(t => t.Status, f => f.PickRandom<TransactionStatus>())
                 .RuleFor(t => t.WalletId, walletId)
+                .RuleFor(t => t.TransactionNumber, Guid.NewGuid().ToString())
                 .Generate();
         }
 

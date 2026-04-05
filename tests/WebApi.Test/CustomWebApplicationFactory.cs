@@ -36,6 +36,7 @@ namespace WebApi.Test
         private string _transactionalPassowrd = string.Empty;
         private User _userReceiver = default!;
         private WalletEntity _walletReceiver = default!;
+        private string _transactionNumber = string.Empty;
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Test")
@@ -62,6 +63,7 @@ namespace WebApi.Test
         public string getPassword() => _password;
         public Guid getUserIdentifier() => _user.UserIdentifier;
         public string getTransactionalPassword() => _transactionalPassowrd;
+        public string getTransactionNumber() => _transactionNumber;
 
         public string getCpfReceiver() => _userReceiver.CPF;
         private void StartDatabase(WalletDbContext dbContext, IServiceCollection services)
@@ -81,6 +83,9 @@ namespace WebApi.Test
             
             for (var i = 0; i < _transactionList.Count; i++)
                 dbContext.Transactions.Add(_transactionList[i]);
+
+            _transactionNumber = _transactionList.First().TransactionNumber;
+
             dbContext.SaveChanges();
         }
 

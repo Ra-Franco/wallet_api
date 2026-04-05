@@ -5,6 +5,6 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
 {
     public interface ICreateDepositUseCase
     {
-        public Task<ResponseTransaction> Execute(RequestCreateDeposit request);
+        public Task<ResponseShortTransaction> Execute(RequestCreateDeposit request);
     }
 }

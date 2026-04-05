@@ -49,5 +49,12 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.Transactions
 
             return await PagedListExtensions.ToPagedListAsync(items, pageParameters.PageNumber, pageParameters.PageSize);
         }
+
+        public async Task<Transaction?> GetByTransactionNumber(string transactionNumber, long walletId)
+        {
+            return await _dbContext.Transactions
+                .Where(t => t.TransactionNumber == transactionNumber && (t.WalletId == walletId || t.RelatedWalletId == walletId))
+                .FirstOrDefaultAsync();
+        }
     }
 }

@@ -5,6 +5,6 @@ namespace Wallet.Application.UseCases.Transaction.Withdraw
 {
     public interface IDoWithdrawUseCase
     {
-        public Task<ResponseTransaction> Execute(RequestCreateWithdraw request);
+        public Task<ResponseShortTransaction> Execute(RequestCreateWithdraw request);
     }
 }

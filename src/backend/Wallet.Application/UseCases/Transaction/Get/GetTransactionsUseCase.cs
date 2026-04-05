@@ -21,7 +21,7 @@ namespace Wallet.Application.UseCases.Transaction.Get
             _loggedUser = loggedUser;
         }
 
-        public async Task<PagedList<ResponseTransaction>> Execute(RequestTransactionsFilter request, PageParameters pageParameters)
+        public async Task<PagedList<ResponseShortTransaction>> Execute(RequestTransactionsFilter request, PageParameters pageParameters)
         {
             var user = await _loggedUser.User();
 
@@ -35,7 +35,7 @@ namespace Wallet.Application.UseCases.Transaction.Get
 
             var transactions = await _readRepository.GetTransactionsByUserId(user.Id, filters, pageParameters);
 
-            return _mapper.Map<PagedList<ResponseTransaction>>(transactions);
+            return _mapper.Map<PagedList<ResponseShortTransaction>>(transactions);
         }
     }
 }
