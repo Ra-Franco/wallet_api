@@ -30,15 +30,17 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.Wallet
                 .FirstOrDefaultAsync(wallet => wallet.UserId == userId);
         }
 
-        public async Task UpdateTransactionPassword(string transactionPassword, WalletEntity wallet) => _dbContext
+        public async Task UpdateTransactionPassword(string transactionPassword, long walletId) => await _dbContext
                 .Wallet
-                .Update(wallet);
+                .Where(w => w.Id == walletId)
+                .ExecuteUpdateAsync(setters => setters.SetProperty(w => w.TransactionPassword, transactionPassword));
 
-        public async Task Update(WalletEntity wallet)
+        public async Task UpdateAmount(long walletId, decimal balance)
         {
-            _dbContext
+            await _dbContext
                 .Wallet
-                .Update(wallet);
+                .Where(w => w.Id == walletId)
+                .ExecuteUpdateAsync(setters => setters.SetProperty(w => w.Balance, balance));
         }
 
         public async Task<string?> GetTransactionalPasswordByUserId(long userId)

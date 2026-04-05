@@ -4,9 +4,11 @@ using Wallet.Api.Filters;
 using Wallet.Application.UseCases.Transaction.Deposits;
 using Wallet.Application.UseCases.Transaction.Get;
 using Wallet.Application.UseCases.Transaction.Transfer;
+using Wallet.Application.UseCases.Transaction.Withdraw;
 using Wallet.Communication.Requests.Transactions;
 using Wallet.Communication.Requests.Transactions.Deposit;
 using Wallet.Communication.Requests.Transactions.Transfer;
+using Wallet.Communication.Requests.Transactions.Withdraw;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Domain.Utils.Page;
 
@@ -53,6 +55,18 @@ namespace Wallet.Api.Controllers
         {
             var response = await useCase.Execute(request);
             return Created(string.Empty, response);
-        } 
+        }
+
+        [HttpPost("withdraw")]
+        [AuthenticadedUser]
+        [RequireActiveWallet]
+        public async Task<IActionResult> DoWithdraw(
+                [FromServices] IDoWithdrawUseCase useCase,
+                [FromBody] RequestCreateWithdraw request
+            )
+        {
+            var response = await useCase.Execute(request);
+            return Created(string.Empty, response);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace CommonTestUtilities.Entities
         {
             return new Faker<Wallet.Domain.Entities.WalletEntity>()
                 .RuleFor(w => w.UserId, _ => user.Id)
-                .RuleFor(w => w.Balance, f => f.Finance.Amount(0, 5000))
+                .RuleFor(w => w.Balance, f => f.Finance.Amount(200, 5000))
                 .RuleFor(w => w.PendingBalance, f => f.Finance.Amount(0, 1000))
                 .RuleFor(w => w.TransactionPassword, (f) => f.Internet.Password(6, regexPattern: @"^\d+$"))
                 .RuleFor(w => w.Status, status)
