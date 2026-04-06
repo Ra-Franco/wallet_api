@@ -1,12 +1,15 @@
 ﻿using CommonTestUtilities.Cryptography;
 using CommonTestUtilities.Entities;
 using CommonTestUtilities.Repositories;
+using CommonTestUtilities.Repositories.Token;
 using CommonTestUtilities.Repositories.User;
 using CommonTestUtilities.Requests;
+using CommonTestUtilities.Services;
 using CommonTestUtilities.Token;
 using FluentAssertions;
 using Wallet.Application.UseCases.Auth.Login;
 using Wallet.Communication.Requests.Login;
+using Wallet.Domain.Entities;
 using Wallet.Exceptions;
 using Wallet.Exceptions.Login;
 
@@ -18,7 +21,8 @@ namespace UseCases.Test.Login.DoLogin
         public async Task Success()
         {
             (var user, var password) = UserBuilder.Build();
-            var useCase = CreateUseCase(user);
+            var refreshToken = RefreshTokenBuilder.Build(user);
+            var useCase = CreateUseCase(refreshToken, user);
 
             var result = await useCase.Execute(new RequestLoginJson
             {
@@ -28,6 +32,7 @@ namespace UseCases.Test.Login.DoLogin
 
             result.Should().NotBeNull();
             result.AccessToken.Should().NotBeNull();
+            result.RefreshToken.Should().NotBeNull();
         }
 
         [Fact]
@@ -43,7 +48,7 @@ namespace UseCases.Test.Login.DoLogin
                 .Where(e => e.Message.Equals(ResourceMessageException.CPF_OR_PASSWORD_INCORRECT));
         }
 
-        private DoLoginUseCase CreateUseCase(Wallet.Domain.Entities.User? user = null)
+        private DoLoginUseCase CreateUseCase(RefreshToken? refreshToken = null, User? user = null)
         {
             var repository = new UserReadOnlyRepositoryBuilder();
             var passwordEncrypter = PasswordEncrypterBuilder.Build();
@@ -52,7 +57,14 @@ namespace UseCases.Test.Login.DoLogin
             if (user != null)
                 repository.ExistActiveUserWithCpfAndPassword(user);
 
-            return new DoLoginUseCase(repository.Build(), passwordEncrypter, accessToken);
+            var unitOfWork = UnitOfWorkBuilder.Build();
+            var refreshTokenGenerator = RefreshTokenGeneratorBuilder.Build();
+            var tokenRepo = new TokenRepositoryBuilder();
+
+            if (refreshToken != null)
+                tokenRepo.Get(refreshToken);
+
+            return new DoLoginUseCase(repository.Build(), passwordEncrypter, accessToken,refreshTokenGenerator,tokenRepo.Build(),unitOfWork);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Wallet.Infrasctucture.DataAccess
         public DbSet<User> Users { get; set; }
         public DbSet<Domain.Entities.WalletEntity> Wallet { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   

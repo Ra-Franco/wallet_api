@@ -9,8 +9,10 @@ using Wallet.Communication.Responses.Token;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Enum;
 using Wallet.Domain.Repositories;
+using Wallet.Domain.Repositories.Token;
 using Wallet.Domain.Repositories.User;
 using Wallet.Domain.Security.Cryptography;
+using Wallet.Domain.Security.Tokens;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 
@@ -25,15 +27,19 @@ namespace Wallet.Application.UseCases.User.Register
         private readonly IUnitOfWork _unitOfWork;
         private readonly IAccessTokenGenerator _tokenAccess;
         private readonly IRegisterWalletUseCase _registerWalletUseCase;
+        private readonly IRefreshTokenGenerator _refreshTokenGenerator;
+        private readonly ITokenRepository _tokenRepository;
 
         public RegisterUserUseCase(
-            IUserRepositoryReadOnly readRepository, 
-            IUserRepositoryWriteOnly writeRepository, 
+            IUserRepositoryReadOnly readRepository,
+            IUserRepositoryWriteOnly writeRepository,
             IMapper mapper,
-            IPasswordEncrypt passwordEncrypter, 
+            IPasswordEncrypt passwordEncrypter,
             IUnitOfWork unitOfWork,
             IAccessTokenGenerator accessTokenGenerator,
-            IRegisterWalletUseCase registerWalletUseCase)
+            IRegisterWalletUseCase registerWalletUseCase,
+            IRefreshTokenGenerator refreshTokenGenerator,
+            ITokenRepository tokenRepository)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
@@ -42,6 +48,8 @@ namespace Wallet.Application.UseCases.User.Register
             _unitOfWork = unitOfWork;
             _tokenAccess = accessTokenGenerator;
             _registerWalletUseCase = registerWalletUseCase;
+            _refreshTokenGenerator = refreshTokenGenerator;
+            _tokenRepository = tokenRepository;
         }
 
         public async Task<ResponseUserRegister> Execute(RequestRegisterUserJson request)
@@ -59,13 +67,15 @@ namespace Wallet.Application.UseCases.User.Register
 
             await _registerWalletUseCase.Execute(user);
 
+            string refreshToken = await CreateAndSaveRefreshToken(user);
 
             return new ResponseUserRegister
             {
                 Name = user.Name,
                 Tokens = new ResponseTokenJson
                 {
-                    AccessToken = _tokenAccess.Generate(user.UserIdentifier)
+                    AccessToken = _tokenAccess.Generate(user.UserIdentifier),
+                    RefreshToken = refreshToken,
                 }
             };
         }
@@ -89,6 +99,21 @@ namespace Wallet.Application.UseCases.User.Register
 
                 throw new ErrorOnValidationException(errorMessages);
             }
+        }
+
+        private async Task<string> CreateAndSaveRefreshToken(Domain.Entities.User user)
+        {
+            var refreshToken = new RefreshToken
+            {
+                Value = _refreshTokenGenerator.Generate(),
+                UserId = user.Id,
+            };
+
+            await _tokenRepository.SaveNewRefreshToken(refreshToken);
+
+            await _unitOfWork.Commit();
+
+            return refreshToken.Value;
         }
     }
 }

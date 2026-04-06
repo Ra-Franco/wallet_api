@@ -195,4 +195,10 @@
   <data name="RECEIVER_WALLET_NOT_FOUND" xml:space="preserve">
     <value>A carteira do recebedor não foi encontrada.</value>
   </data>
+  <data name="REFRESH_TOKEN_NOT_FOUND" xml:space="preserve">
+    <value>O token de atualização não foi encontrado.</value>
+  </data>
+  <data name="REFRESH_TOKEN_EXPIRED" xml:space="preserve">
+    <value>O token de atualização está expirado.</value>
+  </data>
 </root>

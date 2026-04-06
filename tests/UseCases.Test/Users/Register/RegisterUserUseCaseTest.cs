@@ -2,14 +2,19 @@
 using CommonTestUtilities.Entities;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositories;
+using CommonTestUtilities.Repositories.Token;
 using CommonTestUtilities.Repositories.User;
 using CommonTestUtilities.Requests;
+using CommonTestUtilities.Services;
 using CommonTestUtilities.Token;
 using CommonTestUtilities.UseCases;
 using FluentAssertions;
+using System.Runtime.InteropServices;
 using Wallet.Application.UseCases.User.Register;
+using Wallet.Domain.Entities;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Infrasctructure.Security.Token.Refresh;
 
 namespace UseCases.Test.Users.Register
 {
@@ -19,9 +24,13 @@ namespace UseCases.Test.Users.Register
         public async Task Success()
         {
             var request = RequestRegisterUserJsonBuilder.Build();
-            var useCase = CreateUseCase();
-            var user = UserBuilder.Build();
+            (var user, var _) = UserBuilder.Build();
 
+            var refreshToken = RefreshTokenBuilder.Build(user);
+
+            var useCase = CreateUseCase(tokenRefresh: refreshToken);
+
+            
             var result = await useCase.Execute(request);
 
             result.Should().NotBeNull();
@@ -52,7 +61,7 @@ namespace UseCases.Test.Users.Register
                         e.GetErrorMessages().Contains(ResourceMessageException.CPF_ALREADY_EXIST));
         }
 
-        private static RegisterUserUseCase CreateUseCase(string? email = null, string? cpf = null)
+        private static RegisterUserUseCase CreateUseCase(string? email = null, string? cpf = null, RefreshToken? tokenRefresh = null)
         {
             var mapper = MappingBuilder.Build();
             var passwordEncrypter = PasswordEncrypterBuilder.Build();
@@ -67,7 +76,13 @@ namespace UseCases.Test.Users.Register
             if (!string.IsNullOrEmpty(cpf))
                 readRepositoryBuilder.ExistActiveUserWithCpf(cpf);
 
-            return new RegisterUserUseCase(readRepositoryBuilder.Build(), writeRepository, mapper, passwordEncrypter, unitOfWork, tokenGenerator, registerWalletUseCase);
+            var refreshTokenGen = RefreshTokenGeneratorBuilder.Build();
+            var tokenRepo = new TokenRepositoryBuilder();
+
+            if (tokenRefresh != null)
+                tokenRepo.Get(tokenRefresh);
+
+            return new RegisterUserUseCase(readRepositoryBuilder.Build(), writeRepository, mapper, passwordEncrypter, unitOfWork, tokenGenerator, registerWalletUseCase, refreshTokenGen, tokenRepo.Build());
         }
     }
 }

@@ -187,6 +187,24 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The refresh token is expired..
+        /// </summary>
+        public static string REFRESH_TOKEN_EXPIRED {
+            get {
+                return ResourceManager.GetString("REFRESH_TOKEN_EXPIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The refresh token was not founded..
+        /// </summary>
+        public static string REFRESH_TOKEN_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("REFRESH_TOKEN_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The value of amount cant be null..
         /// </summary>
         public static string TRANSACTIONAL_AMOUNT_NOT_NULL {

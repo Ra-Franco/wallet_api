@@ -195,4 +195,10 @@
   <data name="RECEIVER_WALLET_NOT_FOUND" xml:space="preserve">
     <value>The receiver wallet has not been found. \</value>
   </data>
+  <data name="REFRESH_TOKEN_NOT_FOUND" xml:space="preserve">
+    <value>The refresh token was not founded.</value>
+  </data>
+  <data name="REFRESH_TOKEN_EXPIRED" xml:space="preserve">
+    <value>The refresh token is expired.</value>
+  </data>
 </root>

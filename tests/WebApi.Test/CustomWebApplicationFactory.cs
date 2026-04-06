@@ -37,6 +37,7 @@ namespace WebApi.Test
         private User _userReceiver = default!;
         private WalletEntity _walletReceiver = default!;
         private string _transactionNumber = string.Empty;
+        private RefreshToken _refreshToken = default!;
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Test")
@@ -66,6 +67,7 @@ namespace WebApi.Test
         public string getTransactionNumber() => _transactionNumber;
 
         public string getCpfReceiver() => _userReceiver.CPF;
+        public string getRefreshTokenValue() => _refreshToken.Value;
         private void StartDatabase(WalletDbContext dbContext, IServiceCollection services)
         {
             (_user, _password) = UserBuilder.Build();
@@ -85,6 +87,9 @@ namespace WebApi.Test
                 dbContext.Transactions.Add(_transactionList[i]);
 
             _transactionNumber = _transactionList.First().TransactionNumber;
+
+            _refreshToken = RefreshTokenBuilder.Build(_user);
+            dbContext.RefreshTokens.Add(_refreshToken);
 
             dbContext.SaveChanges();
         }

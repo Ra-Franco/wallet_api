@@ -12,7 +12,7 @@ namespace WebApi.Test.Login.DoLogin
 {
     public class DoLoginTest : WalletCustomClassFixture
     {
-        private readonly string route = "login";
+        private readonly string route = "auth/login";
         private readonly string _cpf;
         private readonly string _password;
 
@@ -36,6 +36,7 @@ namespace WebApi.Test.Login.DoLogin
 
             var responseData = await JsonDocument.ParseAsync(responseBody);
             responseData.RootElement.GetProperty("accessToken").GetString().Should().NotBeNullOrWhiteSpace();
+            responseData.RootElement.GetProperty("refreshToken").GetString().Should().NotBeNullOrWhiteSpace();
         }
 
         [Theory]
