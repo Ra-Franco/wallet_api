@@ -64,5 +64,14 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.Wallet
                 .Select(x => x.Wallet)
                 .FirstOrDefaultAsync();
         }
+
+        public async Task<decimal> FindBalanceByUserId(long userId)
+        {
+            return await _dbContext
+                .Wallet
+                .Where(w => w.UserId == userId)
+                .Select(w => w.Balance)
+                .FirstAsync();
+        }
     }
 }

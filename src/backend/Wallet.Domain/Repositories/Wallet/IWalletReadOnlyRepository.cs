@@ -11,5 +11,7 @@ namespace Wallet.Domain.Repositories.Wallet
         public Task<string?> GetTransactionalPasswordByUserId(long userId);
 
         public Task<WalletEntity?> FindWalletByCpf(string cpf);
+
+        public Task<decimal> FindBalanceByUserId(long userId);
     }
 }

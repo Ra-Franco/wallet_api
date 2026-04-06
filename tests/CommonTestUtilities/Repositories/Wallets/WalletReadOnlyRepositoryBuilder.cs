@@ -26,5 +26,10 @@ namespace CommonTestUtilities.Repositories.Wallets
         {
             _repository.Setup(repo => repo.FindWalletByCpf(cpf)).ReturnsAsync(wallet);
         }
+
+        public void FindBalanceByUserId(WalletEntity wallet)
+        {
+            _repository.Setup(repo => repo.FindBalanceByUserId(wallet.UserId)).ReturnsAsync(wallet.Balance);
+        }
     }
 }

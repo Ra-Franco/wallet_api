@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Wallet.Api.Attributes;
 using Wallet.Application.UseCases.Wallet.Get;
+using Wallet.Application.UseCases.Wallet.GetBalance;
 using Wallet.Application.UseCases.Wallet.TransactionalPassword;
 using Wallet.Communication.Requests.Wallet;
 using Wallet.Communication.Responses.Wallet;
@@ -32,6 +33,17 @@ namespace Wallet.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetWalletDashboard(
             [FromServices] IWalletDasboardUseCase useCase
+            )
+        {
+            var response = await useCase.Execute();
+            return Ok(response);
+        }
+
+        [HttpGet("balance")]
+        [AuthenticadedUser]
+        [ProducesResponseType(typeof(ResponseGetBalance), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetBalance(
+                [FromServices] IGetBalanceUseCase useCase
             )
         {
             var response = await useCase.Execute();
