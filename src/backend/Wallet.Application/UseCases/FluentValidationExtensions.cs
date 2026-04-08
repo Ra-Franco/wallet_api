@@ -29,5 +29,13 @@ namespace Wallet.Application.UseCases
                 .NotEmpty().WithMessage(ResourceMessageException.TRANSACTIONAL_AMOUNT_NOT_NULL)
                 .GreaterThan(0).WithMessage(ResourceMessageException.TRASANCTIONAL_AMOUNT_GREATER_THAN_0);
         }
+
+        public static IRuleBuilder<T, string>BrazilPhoneNumberValidator<T>(this IRuleBuilder<T, string> ruleBuilder)
+        {
+            return ruleBuilder
+                    .NotEmpty().WithMessage(ResourceMessageException.PHONE_NUMBER_EMPTY)
+                    .NotNull().WithMessage(ResourceMessageException.PHONE_NUMBER_EMPTY)
+                    .Matches(@"^\([1-9]{2}\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$").WithMessage(ResourceMessageException.PHONE_NUMBER_INVALID);
+        }
     }
 }

@@ -178,6 +178,24 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The phone number cannot be empty..
+        /// </summary>
+        public static string PHONE_NUMBER_EMPTY {
+            get {
+                return ResourceManager.GetString("PHONE_NUMBER_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The phone number is invalid..
+        /// </summary>
+        public static string PHONE_NUMBER_INVALID {
+            get {
+                return ResourceManager.GetString("PHONE_NUMBER_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The receiver wallet has not been found. \.
         /// </summary>
         public static string RECEIVER_WALLET_NOT_FOUND {

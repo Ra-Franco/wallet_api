@@ -1,4 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿using Newtonsoft.Json;
+using System.Net.Http.Json;
+using System.Text;
 using Xunit;
 
 namespace WebApi.Test
@@ -39,6 +41,17 @@ namespace WebApi.Test
             AuthrizeRequest(token);
 
             return await _httpClient.PutAsJsonAsync(route, request);
+        }
+
+        protected async Task<HttpResponseMessage> DoPatch(string route, object request, string token = "", string culture = "en")
+        {
+            ChangeRequestCulture(culture);
+            AuthrizeRequest(token);
+
+            var json = JsonConvert.SerializeObject(request);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            return await _httpClient.PatchAsync(route, content);
         }
         private void ChangeRequestCulture(string culture)
         {

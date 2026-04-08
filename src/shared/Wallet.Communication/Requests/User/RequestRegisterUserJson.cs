@@ -1,4 +1,4 @@
-﻿namespace Wallet.Communication.Requests
+﻿namespace Wallet.Communication.Requests.User
 {
     public class RequestRegisterUserJson
     {

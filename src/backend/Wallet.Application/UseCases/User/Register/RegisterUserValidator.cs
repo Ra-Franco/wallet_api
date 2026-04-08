@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using System.Text.RegularExpressions;
-using Wallet.Communication.Requests;
+using Wallet.Communication.Requests.User;
 using Wallet.Exceptions;
 
 namespace Wallet.Application.UseCases.User.Register

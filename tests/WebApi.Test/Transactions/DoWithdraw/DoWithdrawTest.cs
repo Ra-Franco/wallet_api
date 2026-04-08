@@ -2,7 +2,7 @@
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Token;
 using FluentAssertions;
-using Microsoft.AspNetCore.Routing;
+using Wallet.Communication.Utils;
 using System.Globalization;
 using System.Net;
 using System.Text.Json;
@@ -56,7 +56,7 @@ namespace WebApi.Test.Transactions.DoWithdraw
             var request = RequestCreateWithdrawBuilder.Build();
 
             request.TransactionPassword = _transactionalPassword;
-            request.Amount = decimal.MaxValue.ToString(CultureInfo.InvariantCulture);
+            request.Amount = decimal.MaxValue.DecimalToStringCurrency();
 
             var response = await DoPost(ROUTE, request, token: token, culture: culture);
 

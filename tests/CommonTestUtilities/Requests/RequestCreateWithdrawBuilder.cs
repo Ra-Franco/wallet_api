@@ -1,7 +1,6 @@
 ﻿using Bogus;
-using Bogus.Extensions.Brazil;
-using System.Globalization;
 using Wallet.Communication.Requests.Transactions.Withdraw;
+using Wallet.Communication.Utils;
 
 namespace CommonTestUtilities.Requests
 {
@@ -11,7 +10,7 @@ namespace CommonTestUtilities.Requests
         {
             return new Faker<RequestCreateWithdraw>()
                 .RuleFor(req => req.TransactionPassword, (f) => f.Internet.Password(length, regexPattern: @"^\d+$"))
-                .RuleFor(req => req.Amount, (f) => f.Finance.Amount(0, 100).ToString(CultureInfo.InvariantCulture))
+                .RuleFor(req => req.Amount, (f) => f.Finance.Amount(0, 100).DecimalToStringCurrency())
                 .RuleFor(req => req.Description, f => f.Lorem.Paragraph(characteres));
         }
     }

@@ -201,4 +201,10 @@
   <data name="REFRESH_TOKEN_EXPIRED" xml:space="preserve">
     <value>O token de atualização está expirado.</value>
   </data>
+  <data name="PHONE_NUMBER_EMPTY" xml:space="preserve">
+    <value>O número de telefone não pode ser vazio.</value>
+  </data>
+  <data name="PHONE_NUMBER_INVALID" xml:space="preserve">
+    <value>O número de telefone é inválido.</value>
+  </data>
 </root>

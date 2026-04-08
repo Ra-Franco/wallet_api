@@ -1,4 +1,4 @@
-﻿using Wallet.Communication.Requests;
+﻿using Wallet.Communication.Requests.User;
 using Wallet.Communication.Responses;
 
 namespace Wallet.Application.UseCases.User.Register

@@ -201,4 +201,10 @@
   <data name="REFRESH_TOKEN_EXPIRED" xml:space="preserve">
     <value>The refresh token is expired.</value>
   </data>
+  <data name="PHONE_NUMBER_EMPTY" xml:space="preserve">
+    <value>The phone number cannot be empty.</value>
+  </data>
+  <data name="PHONE_NUMBER_INVALID" xml:space="preserve">
+    <value>The phone number is invalid.</value>
+  </data>
 </root>

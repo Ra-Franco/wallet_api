@@ -1,6 +1,6 @@
 ﻿using Bogus;
 using Bogus.Extensions.Brazil;
-using Wallet.Communication.Requests;
+using Wallet.Communication.Requests.User;
 using Wallet.Domain.Enum;
 
 namespace CommonTestUtilities.Requests

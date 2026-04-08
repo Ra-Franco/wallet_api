@@ -41,5 +41,12 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.User
                 .Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(user => user.CPF == cpf && user.Password == password && user.Status == UserStatus.Active);
+
+        public async Task Update(Domain.Entities.User user)
+        {
+            _dbContext
+            .Users
+            .Update(user);
+        }
     }
 }

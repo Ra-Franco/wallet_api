@@ -19,6 +19,7 @@ using Wallet.Application.UseCases.Transaction.Withdraw;
 using Wallet.Application.UseCases.Transaction.GetById;
 using Wallet.Application.UseCases.Auth.RefreshToken;
 using Wallet.Application.UseCases.Wallet.GetBalance;
+using Wallet.Application.UseCases.User.UpdateRegistration;
 
 namespace Wallet.Application
 {
@@ -54,6 +55,7 @@ namespace Wallet.Application
             services.AddScoped<IGetTransactionByTransactionNumberUseCase, GetTransactionByTransactionNumberUseCase>();
             services.AddScoped<IUseRefreshTokenUseCase, UseRefreshTokenUseCase>();
             services.AddScoped<IGetBalanceUseCase, GetBalanceUseCase>();
+            services.AddScoped<IUpdateRegistrationUseCase, UpdateRegistrationUseCase>();
         }
 
         private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)

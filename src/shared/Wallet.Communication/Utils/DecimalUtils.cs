@@ -12,5 +12,10 @@ namespace Wallet.Communication.Utils
         {
             return decimal.Parse(value, CultureInfo.InvariantCulture);
         }
+
+        public static string DecimalToStringCurrency(this decimal value)
+        {
+            return value.ToString(CultureInfo.InvariantCulture);
+        }
     }
 }

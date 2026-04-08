@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Wallet.Communication.Requests;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Utils.Page;
 using Wallet.Communication.Utils;
 using System.Runtime.InteropServices;
+using Wallet.Communication.Requests.User;
 
 namespace MyRecipeBook.Application.Services.AutoMapper
 {

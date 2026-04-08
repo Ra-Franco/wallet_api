@@ -8,9 +8,9 @@ using Wallet.Communication.Responses.Token;
 
 namespace Wallet.Api.Controllers
 {
-    [Route("auth")]
+    [Route("[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class AuthController : ControllerBase
     {
         [HttpPost("login")]
         [ProducesResponseType(typeof(ResponseTokenJson), StatusCodes.Status200OK)]

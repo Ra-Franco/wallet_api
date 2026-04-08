@@ -3,7 +3,7 @@ using MyRecipeBook.Application.Services.Cryptography;
 using System.ComponentModel.DataAnnotations;
 using Wallet.Application.Tokens;
 using Wallet.Application.UseCases.Wallet.Register;
-using Wallet.Communication.Requests;
+using Wallet.Communication.Requests.User;
 using Wallet.Communication.Responses;
 using Wallet.Communication.Responses.Token;
 using Wallet.Domain.Entities;
@@ -15,6 +15,7 @@ using Wallet.Domain.Security.Cryptography;
 using Wallet.Domain.Security.Tokens;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Communication.Utils;
 
 namespace Wallet.Application.UseCases.User.Register
 {
