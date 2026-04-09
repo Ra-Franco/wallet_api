@@ -1,7 +1,6 @@
 ﻿using CommonTestUtilities.Requests;
 using FluentAssertions;
-using Wallet.Application.UseCases.User.Register;
-using Wallet.Application.UseCases.User.UpdateRegistration;
+using Wallet.Application.UseCases.User.Registration.UpdateRegistration;
 using Wallet.Exceptions;
 
 namespace Validators.Test.Users.Registration

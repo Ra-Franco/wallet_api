@@ -7,7 +7,7 @@ using Wallet.Domain.Repositories.User;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 
-namespace Wallet.Application.UseCases.User.UpdateRegistration
+namespace Wallet.Application.UseCases.User.Registration.UpdateRegistration
 {
     public class UpdateRegistrationUseCase : IUpdateRegistrationUseCase
     {

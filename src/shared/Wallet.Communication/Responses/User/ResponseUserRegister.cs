@@ -1,6 +1,6 @@
 ﻿using Wallet.Communication.Responses.Token;
 
-namespace Wallet.Communication.Responses
+namespace Wallet.Communication.Responses.User
 {
     public class ResponseUserRegister
     {

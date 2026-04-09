@@ -2,7 +2,7 @@
 using Wallet.Communication.Requests.User;
 using Wallet.Exceptions;
 
-namespace Wallet.Application.UseCases.User.UpdateRegistration
+namespace Wallet.Application.UseCases.User.Registration.UpdateRegistration
 {
     public class UpdateRegistrationValidator : AbstractValidator<RequestUpdateRegistrationUser>
     {
