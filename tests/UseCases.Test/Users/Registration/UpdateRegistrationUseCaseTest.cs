@@ -4,7 +4,7 @@ using CommonTestUtilities.Repositories.User;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Services;
 using FluentAssertions;
-using Wallet.Application.UseCases.User.UpdateRegistration;
+using Wallet.Application.UseCases.User.Registration.UpdateRegistration;
 using Wallet.Domain.Entities;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;

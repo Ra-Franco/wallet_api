@@ -1,5 +1,5 @@
 ﻿using Wallet.Communication.Requests.User;
-using Wallet.Communication.Responses;
+using Wallet.Communication.Responses.User;
 
 namespace Wallet.Application.UseCases.User.Register
 {

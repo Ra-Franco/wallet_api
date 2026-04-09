@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Wallet.Api.Attributes;
 using Wallet.Application.UseCases.User.Register;
-using Wallet.Application.UseCases.User.UpdateRegistration;
+using Wallet.Application.UseCases.User.Registration.Get;
+using Wallet.Application.UseCases.User.Registration.UpdateRegistration;
 using Wallet.Communication.Requests.User;
-using Wallet.Communication.Responses;
+using Wallet.Communication.Responses.User;
 
 namespace Wallet.Api.Controllers
 {
@@ -34,6 +35,17 @@ namespace Wallet.Api.Controllers
         {
             await useCase.Execute(request);
             return NoContent();
+        }
+
+        [HttpGet("registration")]
+        [AuthenticadedUser]
+        [ProducesResponseType(typeof(ResponseUserRegistration), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetUserRegistration(
+        [FromServices] IGetUserRegistration useCase
+    )
+        {
+            var response = await useCase.Execute();
+            return Ok(response);
         }
     }
 }
