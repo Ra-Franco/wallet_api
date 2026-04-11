@@ -1,6 +1,6 @@
 ﻿using Wallet.Communication.Responses.Wallet;
 
-namespace Wallet.Application.UseCases.Wallet.Get
+namespace Wallet.Application.UseCases.Wallet.Dashboard
 {
     public interface IWalletDasboardUseCase
     {

@@ -1,5 +1,4 @@
 ﻿using Moq;
-using Wallet.Domain.Repositories.User;
 using Wallet.Domain.Repositories.Wallet;
 
 namespace CommonTestUtilities.Repositories.Wallets

@@ -1,6 +1,4 @@
 ﻿using FluentMigrator;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using Wallet.Infrastructure.Migrations;
 
 namespace Wallet.Infrasctructure.Migrations.Versions
 {

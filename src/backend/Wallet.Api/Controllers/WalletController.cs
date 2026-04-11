@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Wallet.Api.Attributes;
-using Wallet.Application.UseCases.Wallet.Get;
+using Wallet.Application.UseCases.Wallet.Dashboard;
 using Wallet.Application.UseCases.Wallet.GetBalance;
 using Wallet.Application.UseCases.Wallet.TransactionalPassword;
 using Wallet.Communication.Requests.Wallet;

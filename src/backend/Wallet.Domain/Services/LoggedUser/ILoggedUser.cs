@@ -1,6 +1,6 @@
 ﻿using Wallet.Domain.Entities;
 
-namespace Wallet.Application.Services.LoggedUser
+namespace Wallet.Domain.Services.LoggedUser
 {
     public interface ILoggedUser
     {

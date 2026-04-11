@@ -1,6 +1,4 @@
-﻿using Wallet.Domain.Enum;
-
-namespace Wallet.Communication.Responses.Transaction
+﻿namespace Wallet.Communication.Responses.Transaction
 {
     public class ResponseTransaction
     {

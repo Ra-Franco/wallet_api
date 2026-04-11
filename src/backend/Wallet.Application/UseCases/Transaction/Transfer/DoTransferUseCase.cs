@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using System.Reflection;
-using Wallet.Application.Services.LoggedUser;
-using Wallet.Communication.Requests.Transactions.Transfer;
+﻿using Wallet.Communication.Requests.Transactions.Transfer;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Enum;
@@ -9,6 +6,7 @@ using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.Transactions;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Domain.Security.TransferPassword;
+using Wallet.Domain.Services.LoggedUser;
 using Wallet.Domain.Services.TransactionNumber;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
@@ -111,10 +109,10 @@ namespace Wallet.Application.UseCases.Transaction.Transfer
             await _walletWriteRepo.UpdateAmount(wallet.Id, wallet.Balance);
         }
 
-        private async Task Validate(RequestTransfer request)
+        private static async Task Validate(RequestTransfer request)
         {
             var validator = new DoTransferValidator();
-            var result = validator.Validate(request);
+            var result = await validator.ValidateAsync(request);
 
             if (!result.IsValid)
             {

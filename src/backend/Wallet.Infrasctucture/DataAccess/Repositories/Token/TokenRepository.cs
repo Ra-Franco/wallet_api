@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Repositories.Token;
-using Wallet.Infrasctucture.DataAccess;
 
 namespace Wallet.Infrasctructure.DataAccess.Repositories.Token
 {

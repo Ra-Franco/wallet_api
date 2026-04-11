@@ -1,14 +1,13 @@
-﻿using CommonTestUtilities.Requests;
-using FluentAssertions;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Net;
-using System.Net.Http.Json;
 using System.Text.Json;
+using CommonTestUtilities.Requests;
+using FluentAssertions;
 using Wallet.Communication.Requests.Login;
 using Wallet.Exceptions;
 using WebApi.Test.InlineData;
 
-namespace WebApi.Test.Login.DoLogin
+namespace WebApi.Test.Auth.DoLogin
 {
     public class DoLoginTest : WalletCustomClassFixture
     {

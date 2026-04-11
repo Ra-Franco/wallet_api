@@ -1,6 +1,4 @@
-﻿using Wallet.Communication.Requests;
-using Wallet.Communication.Requests.Login;
-using Wallet.Communication.Responses;
+﻿using Wallet.Communication.Requests.Login;
 using Wallet.Communication.Responses.Token;
 
 namespace Wallet.Application.UseCases.Auth.Login

@@ -3,7 +3,7 @@ using FluentAssertions;
 using Wallet.Application.UseCases.User.Register;
 using Wallet.Exceptions;
 
-namespace Validators.Test.User.Register
+namespace Validators.Test.Users.Register
 {
     public class RegisterUserValidatorTest
     {

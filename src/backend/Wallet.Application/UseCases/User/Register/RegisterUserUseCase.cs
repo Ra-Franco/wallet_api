@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using MyRecipeBook.Application.Services.Cryptography;
-using System.ComponentModel.DataAnnotations;
-using Wallet.Application.Tokens;
+using Wallet.Application.Services.Cryptography;
 using Wallet.Application.UseCases.Wallet.Register;
 using Wallet.Communication.Requests.User;
 using Wallet.Communication.Responses.Token;
@@ -14,7 +12,6 @@ using Wallet.Domain.Security.Cryptography;
 using Wallet.Domain.Security.Tokens;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
-using Wallet.Communication.Utils;
 using Wallet.Communication.Responses.User;
 
 namespace Wallet.Application.UseCases.User.Register

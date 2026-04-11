@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Wallet.Domain.Utils.Page;
 
-namespace Wallet.Domain.Utils.Page
+namespace Wallet.Infrasctructure.Utils.Page
 {
     public static class PagedListExtensions
     {

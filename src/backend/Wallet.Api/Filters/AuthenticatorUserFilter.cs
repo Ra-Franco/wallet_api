@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Pomelo.EntityFrameworkCore.MySql.Query.ExpressionVisitors.Internal;
-using Wallet.Application.Tokens;
 using Wallet.Domain.Repositories.User;
+using Wallet.Domain.Security.Tokens;
 
 namespace Wallet.Api.Filters
 {

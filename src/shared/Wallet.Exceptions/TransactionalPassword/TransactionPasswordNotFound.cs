@@ -1,5 +1,4 @@
-﻿using System.Net;
-using Wallet.Exceptions.ExceptionsBase;
+﻿using Wallet.Exceptions.ExceptionsBase;
 
 namespace Wallet.Exceptions.TransactionalPassword
 {

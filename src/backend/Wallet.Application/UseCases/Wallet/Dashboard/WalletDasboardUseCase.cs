@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Repositories.Wallet;
+using Wallet.Domain.Services.LoggedUser;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 using Wallet.Exceptions.TransactionalPassword;
 
-namespace Wallet.Application.UseCases.Wallet.Get
+namespace Wallet.Application.UseCases.Wallet.Dashboard
 {
     public class WalletDasboardUseCase : IWalletDasboardUseCase
     {

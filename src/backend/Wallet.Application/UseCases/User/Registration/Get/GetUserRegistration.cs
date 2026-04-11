@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Communication.Responses.User;
+using Wallet.Domain.Services.LoggedUser;
 
 namespace Wallet.Application.UseCases.User.Registration.Get
 {

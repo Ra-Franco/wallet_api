@@ -3,7 +3,7 @@ using Wallet.Domain.Dtos;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Repositories.Transactions;
 using Wallet.Domain.Utils.Page;
-using Wallet.Infrasctucture.DataAccess;
+using Wallet.Infrasctructure.Utils.Page;
 
 namespace Wallet.Infrasctructure.DataAccess.Repositories.Transactions
 {
@@ -27,7 +27,7 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.Transactions
         {
             var query = _dbContext
                 .Transactions
-                .Where(t => t.Wallet.UserId == userId)
+                .Where(t => t.Wallet!.UserId == userId)
                 .AsQueryable();
 
             if (filter.StartDate.HasValue)
@@ -36,10 +36,10 @@ namespace Wallet.Infrasctructure.DataAccess.Repositories.Transactions
             if (filter.EndDate.HasValue)
                 query = query.Where(t => t.TransactionDate <= filter.EndDate.Value.Date.AddDays(1).AddTicks(-1));
 
-            if (filter.Type.Any())
+            if (filter.Type != null && filter.Type.Any())
                 query = query.Where(t => filter.Type.Contains(t.Type));
 
-            if (filter.Status.Any())
+            if (filter.Status != null && filter.Status.Any())
             {
                 query = query.Where(t => filter.Status.Contains(t.Status));
             }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Communication.Requests.User;
 using Wallet.Communication.Utils;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.User;
+using Wallet.Domain.Services.LoggedUser;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 

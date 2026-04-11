@@ -1,6 +1,5 @@
 ﻿using CommonTestUtilities.Requests;
 using FluentAssertions;
-using Wallet.Application.UseCases.User.Register;
 using Wallet.Application.UseCases.Wallet.TransactionalPassword;
 using Wallet.Exceptions;
 

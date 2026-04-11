@@ -10,7 +10,7 @@ namespace WebApi.Test.Transactions.GetTransactionByTransactionNumber
         private readonly string ROUTE = "/transaction/{transactionNumber}";
         private readonly Guid _userIdentifier;
         private readonly string _transactionNumber;
-        protected CustomWebApplicationFactory _factory { get; }
+        protected CustomWebApplicationFactory _factory;
         public GetTransactionByTransactionNumber(CustomWebApplicationFactory factory) : base(factory)
         {
             _factory = factory;

@@ -35,7 +35,7 @@ namespace UseCases.Test.Transactions.GetTransactions
             result.Items.Should().HaveCount(transactions.Count);
         }
 
-        private static GetTransactionsUseCase CreateUseCase(User user, PagedList<Transaction> pagedList)
+        private static GetTransactionsUseCase CreateUseCase(User user, PagedList<Transaction>? pagedList)
         {
             var loggedUser = LoggedUserBuilder.Build(user);
             var mapper = MapperBuilder.Build();

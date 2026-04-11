@@ -17,7 +17,6 @@ namespace WebApi.Test.Transactions.DoWithdraw
         private readonly string ROUTE = "transaction/withdraw";
         private readonly Guid _userIdentifier;
         private readonly string _transactionalPassword;
-        private readonly string _cpfReceiver;
         private readonly Faker _faker;
         protected CustomWebApplicationFactory _factory { get; }
         public DoWithdrawTest(CustomWebApplicationFactory factory): base(factory)
@@ -25,7 +24,6 @@ namespace WebApi.Test.Transactions.DoWithdraw
             _factory = factory;
             _userIdentifier = factory.getUserIdentifier();
             _transactionalPassword = factory.getTransactionalPassword();
-            _cpfReceiver = factory.getCpfReceiver();
             _faker = new Faker();
         }
 

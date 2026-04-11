@@ -1,9 +1,9 @@
-﻿using CommonTestUtilities.Token;
-using FluentAssertions;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
+using CommonTestUtilities.Token;
+using FluentAssertions;
 
-namespace WebApi.Test.Transactions.GetDeposits
+namespace WebApi.Test.Transactions.GetTransactions
 {
     public class GetTransactionsTest : WalletCustomClassFixture
     {

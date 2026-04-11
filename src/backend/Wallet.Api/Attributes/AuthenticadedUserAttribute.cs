@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
 using Wallet.Api.Filters;
 
 namespace Wallet.Api.Attributes

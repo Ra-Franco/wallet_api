@@ -3,12 +3,12 @@ using FluentAssertions;
 using Wallet.Application.UseCases.Transaction.Transfer;
 using Wallet.Exceptions;
 
-namespace UseCases.Test.Transactions.DoTransfer
+namespace Validators.Test.Transaction.DoTransfer
 {
     public class DoWithdrawValidatorTest
     {
         [Fact]
-        public async Task Success()
+        public void Success()
         {
             var request = RequestTransferBuilder.Build();
             var validator = new DoTransferValidator();
@@ -19,7 +19,7 @@ namespace UseCases.Test.Transactions.DoTransfer
         }
 
         [Fact]
-        public async Task Error_Transactional_Description_Max_Length()
+        public void Error_Transactional_Description_Max_Length()
         {
             var request = RequestTransferBuilder.Build(characteres: 504);
             var validator = new DoTransferValidator();
@@ -32,7 +32,7 @@ namespace UseCases.Test.Transactions.DoTransfer
         }
 
         [Fact]
-        public async Task Error_Amount_Greater_Than_0()
+        public void Error_Amount_Greater_Than_0()
         {
             var request = RequestTransferBuilder.Build();
             var validator = new DoTransferValidator();
@@ -46,7 +46,7 @@ namespace UseCases.Test.Transactions.DoTransfer
         }
 
         [Fact]
-        public async Task Error_Cpf_Invalid()
+        public void Error_Cpf_Invalid()
         {
             var request = RequestTransferBuilder.Build();
             var validator = new DoTransferValidator();
@@ -60,7 +60,7 @@ namespace UseCases.Test.Transactions.DoTransfer
         }
 
         [Fact]
-        public async Task Error_Transactional_Password_Invalid()
+        public void Error_Transactional_Password_Invalid()
         {
             var request = RequestTransferBuilder.Build();
             var validator = new DoTransferValidator();

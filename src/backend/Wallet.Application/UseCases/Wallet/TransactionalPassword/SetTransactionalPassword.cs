@@ -1,13 +1,12 @@
-﻿using Wallet.Application.Services.LoggedUser;
-using Wallet.Application.UseCases.Wallet.TransactionalPassword;
-using Wallet.Communication.Requests.Wallet;
+﻿using Wallet.Communication.Requests.Wallet;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Domain.Security.Cryptography;
+using Wallet.Domain.Services.LoggedUser;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 
-namespace Wallet.Application.UseCases.Wallet.SetTransactionalPassword
+namespace Wallet.Application.UseCases.Wallet.TransactionalPassword
 {
     public class SetTransactionalPassword : ISetTransactionalPassword
     {

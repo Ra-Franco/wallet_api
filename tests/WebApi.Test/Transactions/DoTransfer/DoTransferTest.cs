@@ -3,7 +3,6 @@ using Bogus.Extensions.Brazil;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Token;
 using FluentAssertions;
-using Microsoft.AspNetCore.Routing;
 using System.Globalization;
 using System.Net;
 using System.Text.Json;
@@ -20,7 +19,7 @@ namespace WebApi.Test.Transactions.DoTransfer
         private readonly string _transactionalPassword;
         private readonly string _cpfReceiver;
         private readonly Faker _faker;
-        protected CustomWebApplicationFactory _factory { get; }
+        protected CustomWebApplicationFactory _factory;
         public DoTransferTest(CustomWebApplicationFactory factory) : base(factory)
         {
             _factory = factory;

@@ -1,6 +1,4 @@
-﻿using Azure.Core;
-using CommonTestUtilities.Requests;
-using CommonTestUtilities.Token;
+﻿using CommonTestUtilities.Token;
 using FluentAssertions;
 using System.Net;
 using System.Text.Json;
@@ -36,8 +34,7 @@ namespace WebApi.Test.Wallets.Dashboard
         [Fact]
         public async Task Error_Unathorized()
         {
-            var token = JwtTokenGeneratorBuilder.Build().Generate(_userIdentifier);
-            token = string.Empty;
+            string token = token = string.Empty;
             var response = await DoGet(ROUTE, token: token);
 
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);

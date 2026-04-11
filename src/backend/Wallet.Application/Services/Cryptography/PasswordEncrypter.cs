@@ -2,7 +2,7 @@
 using System.Text;
 using Wallet.Domain.Security.Cryptography;
 
-namespace MyRecipeBook.Application.Services.Cryptography
+namespace Wallet.Application.Services.Cryptography
 {
     public class PasswordEncrypter : IPasswordEncrypt
     {

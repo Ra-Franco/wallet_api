@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using System.Globalization;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Communication.Requests.Transactions.Deposit;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Communication.Utils;
@@ -8,8 +6,8 @@ using Wallet.Domain.Enum;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.Transactions;
 using Wallet.Domain.Repositories.Wallet;
+using Wallet.Domain.Services.LoggedUser;
 using Wallet.Domain.Services.TransactionNumber;
-using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 
 namespace Wallet.Application.UseCases.Transaction.Deposits
@@ -24,7 +22,7 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
         private readonly IWalletWriteOnlyRepository _walletWriteRepo;
         private readonly IMapper _mapper;
 
-        public CreateDepositUseCase(ITransactionWriteOnlyRepository transactionWriteRepo, IUnitOfWork unitOfWork, ILoggedUser loggedUser, ITransactionNumberGenerator numberGenerator, IWalletReadOnlyRepository walletReadRepo, IWalletWriteOnlyRepository walletWriteRepo = null, IMapper mapper = null)
+        public CreateDepositUseCase(ITransactionWriteOnlyRepository transactionWriteRepo, IUnitOfWork unitOfWork, ILoggedUser loggedUser, ITransactionNumberGenerator numberGenerator, IWalletReadOnlyRepository walletReadRepo, IWalletWriteOnlyRepository walletWriteRepo, IMapper mapper)
         {
             _transactionWriteRepo = transactionWriteRepo;
             _unitOfWork = unitOfWork;
@@ -37,7 +35,7 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
 
         public async Task<ResponseShortTransaction> Execute(RequestCreateDeposit request)
         {
-            await Validate(request);
+            Validate(request);
             var loggedUser = await _loggedUser.User();
             var wallet = await _walletReadRepo.FindWalletByUserId(loggedUser.Id);
             var amount = request.Amount.StringToDecimalCurrency();
@@ -64,7 +62,7 @@ namespace Wallet.Application.UseCases.Transaction.Deposits
             return response;
         }
 
-        public async Task Validate(RequestCreateDeposit request)
+        private static void Validate(RequestCreateDeposit request)
         {
             var validator = new CreateDepositValidator();
             var result = validator.Validate(request);

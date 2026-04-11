@@ -1,5 +1,4 @@
 ﻿using FluentMigrator;
-using Wallet.Infrastructure.Migrations;
 
 namespace Wallet.Infrasctructure.Migrations.Versions
 {

@@ -5,11 +5,9 @@ using CommonTestUtilities.Requests;
 using CommonTestUtilities.Services;
 using CommonTestUtilities.Token;
 using FluentAssertions;
-using FluentValidation.Internal;
 using Wallet.Application.UseCases.Auth.RefreshToken;
 using Wallet.Domain.Entities;
 using Wallet.Exceptions;
-using Wallet.Exceptions.ExceptionsBase;
 using Wallet.Exceptions.Token;
 
 namespace UseCases.Test.RefreshTokens
@@ -35,8 +33,6 @@ namespace UseCases.Test.RefreshTokens
         [Fact]
         public async Task Error_RefreshTokenNotFoundException()
         {
-            (var user, var _) = UserBuilder.Build();
-
             var useCase = CreateUseCase();
             var request = RequestNewTokenJsonBuilder.Build();
 

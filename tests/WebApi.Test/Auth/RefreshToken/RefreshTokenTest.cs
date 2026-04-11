@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
+using FluentAssertions;
 using Wallet.Communication.Requests.Login.Token;
 
-namespace WebApi.Test.Login.RefreshToken
+namespace WebApi.Test.Auth.RefreshToken
 {
     public class RefreshTokenTest : WalletCustomClassFixture
     {

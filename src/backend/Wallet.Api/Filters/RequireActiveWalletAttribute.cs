@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Domain.Enum;
 using Wallet.Domain.Repositories.Wallet;
+using Wallet.Domain.Services.LoggedUser;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
 using Wallet.Exceptions.Wallet;

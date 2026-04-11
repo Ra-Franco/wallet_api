@@ -1,6 +1,4 @@
-﻿using Wallet.Domain.Entities;
-
-namespace Wallet.Application.UseCases.Wallet.Register
+﻿namespace Wallet.Application.UseCases.Wallet.Register
 {
     public interface IRegisterWalletUseCase
     {

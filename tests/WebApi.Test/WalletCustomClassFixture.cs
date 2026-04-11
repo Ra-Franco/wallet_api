@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Net.Http.Json;
 using System.Text;
-using Xunit;
 
 namespace WebApi.Test
 {

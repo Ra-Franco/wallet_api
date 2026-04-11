@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Communication.Requests.Transactions;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Domain.Dtos;
 using Wallet.Domain.Repositories.Transactions;
+using Wallet.Domain.Services.LoggedUser;
 using Wallet.Domain.Utils.Page;
 
 namespace Wallet.Application.UseCases.Transaction.Get

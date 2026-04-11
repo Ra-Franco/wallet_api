@@ -1,6 +1,6 @@
 ﻿using CommonTestUtilities.Entities;
 using CommonTestUtilities.Repositories;
-using CommonTestUtilities.Repositories.User;
+using CommonTestUtilities.Repositories.Users;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Services;
 using FluentAssertions;

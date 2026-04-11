@@ -1,4 +1,4 @@
-﻿using Wallet.Application.Tokens;
+﻿using Wallet.Domain.Security.Tokens;
 
 namespace Wallet.Api.Token
 {

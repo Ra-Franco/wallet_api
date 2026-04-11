@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Moq;
-using System.Reflection.Metadata.Ecma335;
+﻿using Moq;
 using Wallet.Domain.Services.TransactionNumber;
 
 namespace CommonTestUtilities.Services

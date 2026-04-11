@@ -1,17 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging.Abstractions;
-using MyRecipeBook.Application.Services.AutoMapper;
-using MyRecipeBook.Application.Services.Cryptography;
+using Wallet.Application.Services.Cryptography;
+using Wallet.Application.Services.AutoMapper;
 using Wallet.Application.Services.PasswordTransactional;
 using Wallet.Application.UseCases.Auth.Login;
 using Wallet.Application.UseCases.Transaction.Deposits;
 using Wallet.Application.UseCases.Transaction.Get;
 using Wallet.Application.UseCases.Transaction.Transfer;
 using Wallet.Application.UseCases.User.Register;
-using Wallet.Application.UseCases.Wallet.Add;
-using Wallet.Application.UseCases.Wallet.SetTransactionalPassword;
-using Wallet.Application.UseCases.Wallet.Get;
 using Wallet.Application.UseCases.Wallet.Register;
 using Wallet.Application.UseCases.Wallet.TransactionalPassword;
 using Wallet.Domain.Security.TransferPassword;
@@ -21,6 +18,9 @@ using Wallet.Application.UseCases.Auth.RefreshToken;
 using Wallet.Application.UseCases.Wallet.GetBalance;
 using Wallet.Application.UseCases.User.Registration.UpdateRegistration;
 using Wallet.Application.UseCases.User.Registration.Get;
+using Wallet.Application.UseCases.User.Security.Get;
+using Wallet.Application.UseCases.User.Security.Update;
+using Wallet.Application.UseCases.Wallet.Dashboard;
 
 namespace Wallet.Application
 {
@@ -58,6 +58,8 @@ namespace Wallet.Application
             services.AddScoped<IGetBalanceUseCase, GetBalanceUseCase>();
             services.AddScoped<IUpdateRegistrationUseCase, UpdateRegistrationUseCase>();
             services.AddScoped<IGetUserRegistration, GetUserRegistration>();
+            services.AddScoped<IGetUserSecuritySettings, GetUserSecuritySettings>();
+            services.AddScoped<IUpdateUserSettingsUseCase, UpdateUserSettingsUseCase>();
         }
 
         private static void AddPasswordEncrypter(IServiceCollection services, IConfiguration configuration)

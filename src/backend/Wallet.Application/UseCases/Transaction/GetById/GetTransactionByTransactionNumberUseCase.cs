@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using System.Runtime.InteropServices;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Domain.Repositories.Transactions;
 using Wallet.Domain.Repositories.Wallet;
-using Wallet.Exceptions.ExceptionsBase;
+using Wallet.Domain.Services.LoggedUser;
 
 namespace Wallet.Application.UseCases.Transaction.GetById
 {

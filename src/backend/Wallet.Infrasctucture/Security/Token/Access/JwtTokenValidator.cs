@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Wallet.Application.Tokens;
+using Wallet.Domain.Security.Tokens;
 
 namespace Wallet.Infrasctructure.Security.Token.Access
 {

@@ -1,4 +1,4 @@
-﻿namespace Wallet.Application.Tokens
+﻿namespace Wallet.Domain.Security.Tokens
 {
     public interface IAccessTokenGenerator
     {

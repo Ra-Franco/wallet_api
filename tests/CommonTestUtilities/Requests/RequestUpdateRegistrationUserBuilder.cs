@@ -1,6 +1,5 @@
 ﻿using Bogus;
 using Microsoft.AspNetCore.JsonPatch;
-using System.Globalization;
 using Wallet.Communication.Requests.User;
 using Wallet.Communication.Utils;
 
@@ -11,8 +10,8 @@ namespace CommonTestUtilities.Requests
         public static RequestUpdateRegistrationUser Build()
         {
             return new Faker<RequestUpdateRegistrationUser>()
-                .RuleFor(u => u.Email, (f, u) => f.Internet.Email())
-                .RuleFor(u => u.Income, (f) => f.Finance.Amount(0, 1000).ToString())
+                .RuleFor(u => u.Email, (f) => f.Internet.Email())
+                .RuleFor(u => u.Income, (f) => f.Finance.Amount(0, 1000).DecimalToStringCurrency())
                 .RuleFor(u => u.Occupation, (f) => f.Name.JobTitle())
                 .RuleFor(u => u.Phonenumber, (f) => f.Phone.PhoneNumber("(##) 9####-####"));
         }

@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wallet.Domain.Entities;
 
-namespace Wallet.Infrasctucture.DataAccess
+namespace Wallet.Infrasctructure.DataAccess
 {
     public class WalletDbContext : DbContext
     {
         public WalletDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Domain.Entities.WalletEntity> Wallet { get; set; }
+        public DbSet<WalletEntity> Wallet { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<UserSecuritySettings> UserSecuritySettings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   

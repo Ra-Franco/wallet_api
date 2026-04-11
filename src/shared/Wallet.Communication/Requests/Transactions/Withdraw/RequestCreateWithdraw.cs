@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Wallet.Communication.Requests.Transactions.Withdraw
+﻿namespace Wallet.Communication.Requests.Transactions.Withdraw
 {
     public class RequestCreateWithdraw
     {

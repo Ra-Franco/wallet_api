@@ -1,8 +1,6 @@
 ﻿using CommonTestUtilities.Requests;
 using FluentAssertions;
-using Wallet.Application.UseCases.Transaction.Transfer;
 using Wallet.Application.UseCases.Transaction.Withdraw;
-using Wallet.Communication.Requests.Transactions.Withdraw;
 using Wallet.Exceptions;
 
 namespace Validators.Test.Transaction.DoWithdraw
@@ -10,7 +8,7 @@ namespace Validators.Test.Transaction.DoWithdraw
     public class DoWithdrawValidatorTest
     {
         [Fact]
-        public async Task Success()
+        public void Success()
         {
             var request = RequestCreateWithdrawBuilder.Build();
             var validator = new DoWithdrawValidator();
@@ -21,7 +19,7 @@ namespace Validators.Test.Transaction.DoWithdraw
         }
 
         [Fact]
-        public async Task Error_Transactional_Description_Max_Length()
+        public void Error_Transactional_Description_Max_Length()
         {
             var request = RequestCreateWithdrawBuilder.Build(characteres: 504);
             var validator = new DoWithdrawValidator();
@@ -34,7 +32,7 @@ namespace Validators.Test.Transaction.DoWithdraw
         }
 
         [Fact]
-        public async Task Error_Amount_Greater_Than_0()
+        public void Error_Amount_Greater_Than_0()
         {
             var request = RequestCreateWithdrawBuilder.Build();
             var validator = new DoWithdrawValidator();
@@ -49,7 +47,7 @@ namespace Validators.Test.Transaction.DoWithdraw
 
 
         [Fact]
-        public async Task Error_Transactional_Password_Invalid()
+        public void Error_Transactional_Password_Invalid()
         {
             var request = RequestCreateWithdrawBuilder.Build();
             var validator = new DoWithdrawValidator();

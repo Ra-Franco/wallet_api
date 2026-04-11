@@ -1,5 +1,4 @@
 ﻿using Wallet.Domain.Repositories;
-using Wallet.Infrasctucture.DataAccess;
 
 namespace Wallet.Infrasctructure.DataAccess
 {

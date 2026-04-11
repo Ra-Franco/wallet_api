@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using Bogus.Extensions.Brazil;
 using Wallet.Communication.Requests.User;
+using Wallet.Communication.Utils;
 using Wallet.Domain.Enum;
 
 namespace CommonTestUtilities.Requests
@@ -20,7 +21,7 @@ namespace CommonTestUtilities.Requests
                 .RuleFor(u => u.Gender, (f) => f.PickRandom(validateGender).ToString())
                 .RuleFor(u => u.Phonenumber, (f) => f.Person.Phone)
                 .RuleFor(u => u.Occupation, (f) => f.Name.JobTitle())
-                .RuleFor(u => u.Income, (f) => f.Finance.Amount(0, 1000).ToString());
+                .RuleFor(u => u.Income, (f) => f.Finance.Amount(0, 1000).DecimalToStringCurrency());
         }
     }
 }

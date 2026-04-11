@@ -1,6 +1,6 @@
 ﻿using Moq;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Domain.Entities;
+using Wallet.Domain.Services.LoggedUser;
 
 namespace CommonTestUtilities.Services
 {

@@ -3,10 +3,10 @@ using Wallet.Api.Filters;
 using Wallet.Api.Middlewares;
 using Wallet.Api.Token;
 using Wallet.Application;
-using Wallet.Application.Tokens;
+using Wallet.Domain.Security.Tokens;
+using Wallet.Infrasctructure;
 using Wallet.Infrasctructure.Extensions;
 using Wallet.Infrasctructure.Migrations;
-using Wallet.Infrasctucture;
 
 const string AUTHENTICATION_TYPE = "Bearer";
 var builder = WebApplication.CreateBuilder(args);

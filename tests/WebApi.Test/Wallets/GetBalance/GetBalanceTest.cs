@@ -1,6 +1,5 @@
 ﻿using CommonTestUtilities.Token;
 using FluentAssertions;
-using Renci.SshNet.Messages.Authentication;
 using System.Net;
 using System.Text.Json;
 

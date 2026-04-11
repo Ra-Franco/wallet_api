@@ -1,4 +1,4 @@
-﻿using MyRecipeBook.Application.Services.Cryptography;
+﻿using Wallet.Application.Services.Cryptography;
 
 namespace CommonTestUtilities.Cryptography
 {

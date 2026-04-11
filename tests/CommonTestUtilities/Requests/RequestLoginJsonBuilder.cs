@@ -9,7 +9,7 @@ namespace CommonTestUtilities.Requests
         public static RequestLoginJson Build()
         {
             return new Faker<RequestLoginJson>()
-                .RuleFor(user => user.Cpf, (f, u) => f.Person.Cpf())
+                .RuleFor(user => user.Cpf, (f) => f.Person.Cpf())
                 .RuleFor(user => user.Password, (f) => f.Internet.Password());
         }
     }

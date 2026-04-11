@@ -207,4 +207,10 @@
   <data name="PHONE_NUMBER_INVALID" xml:space="preserve">
     <value>O número de telefone é inválido.</value>
   </data>
+  <data name="TRANSACTION_LIMIT_NOT_NEGATIVE" xml:space="preserve">
+    <value>O limite transacional não pode ser negativo.</value>
+  </data>
+  <data name="TRANSACTION_LIMIT_PERIOD_INVALID" xml:space="preserve">
+    <value>O período do limite transacional está inválido.</value>
+  </data>
 </root>

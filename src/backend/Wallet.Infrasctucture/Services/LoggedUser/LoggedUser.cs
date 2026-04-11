@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Wallet.Application.Services.LoggedUser;
-using Wallet.Application.Tokens;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Enum;
-using Wallet.Infrasctucture.DataAccess;
+using Wallet.Domain.Security.Tokens;
+using Wallet.Domain.Services.LoggedUser;
+using Wallet.Infrasctructure.DataAccess;
 
 namespace Wallet.Infrasctructure.Services.LoggedUser
 {

@@ -1,6 +1,4 @@
-﻿using Wallet.Domain.Entities;
-
-namespace Wallet.Domain.Repositories.User
+﻿namespace Wallet.Domain.Repositories.User
 {
     public interface IUserRepositoryWriteOnly
     {

@@ -29,8 +29,7 @@ namespace WebApi.Test.Wallets.SetTransactionalPassword
         public async Task Error_Unathorized()
         {
             var request = RequestSetTransactionPasswordJsonBuilder.Build();
-            var token = JwtTokenGeneratorBuilder.Build().Generate(_userIdentifier);
-            token = string.Empty;
+            var token = string.Empty;
             var response = await DoPut(ROUTE, request, token: token);
 
             response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);

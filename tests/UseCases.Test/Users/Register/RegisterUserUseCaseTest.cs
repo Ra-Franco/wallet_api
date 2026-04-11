@@ -3,18 +3,16 @@ using CommonTestUtilities.Entities;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositories;
 using CommonTestUtilities.Repositories.Token;
-using CommonTestUtilities.Repositories.User;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Services;
 using CommonTestUtilities.Token;
 using CommonTestUtilities.UseCases;
 using FluentAssertions;
-using System.Runtime.InteropServices;
+using CommonTestUtilities.Repositories.Users;
 using Wallet.Application.UseCases.User.Register;
 using Wallet.Domain.Entities;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
-using Wallet.Infrasctructure.Security.Token.Refresh;
 
 namespace UseCases.Test.Users.Register
 {

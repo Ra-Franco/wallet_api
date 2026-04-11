@@ -1,4 +1,4 @@
-﻿using Wallet.Application.Tokens;
+﻿using Wallet.Domain.Security.Tokens;
 using Wallet.Infrasctructure.Security.Token.Access;
 
 namespace CommonTestUtilities.Token

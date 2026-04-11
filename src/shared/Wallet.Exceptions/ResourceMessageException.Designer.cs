@@ -223,6 +223,24 @@ namespace Wallet.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The transaction limit can&apos;t be negative..
+        /// </summary>
+        public static string TRANSACTION_LIMIT_NOT_NEGATIVE {
+            get {
+                return ResourceManager.GetString("TRANSACTION_LIMIT_NOT_NEGATIVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The transaction limite period is invalid..
+        /// </summary>
+        public static string TRANSACTION_LIMIT_PERIOD_INVALID {
+            get {
+                return ResourceManager.GetString("TRANSACTION_LIMIT_PERIOD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The value of amount cant be null..
         /// </summary>
         public static string TRANSACTIONAL_AMOUNT_NOT_NULL {

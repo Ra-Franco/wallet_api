@@ -3,12 +3,10 @@ using CommonTestUtilities.Repositories.Transactions;
 using CommonTestUtilities.Repositories.Wallets;
 using CommonTestUtilities.Services;
 using FluentAssertions;
-using Microsoft.Identity.Client;
-using System.ComponentModel.DataAnnotations;
 using Wallet.Application.UseCases.Transaction.GetById;
 using Wallet.Domain.Entities;
 
-namespace UseCases.Test.Transactions.GetTransactionById
+namespace UseCases.Test.Transactions.GetTransactionByTransactionNumber
 {
     public class GetTransactionByTransactionNumberUseCaseTest
     {

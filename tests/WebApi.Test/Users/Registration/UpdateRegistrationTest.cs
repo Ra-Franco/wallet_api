@@ -1,9 +1,7 @@
 ﻿using CommonTestUtilities.Requests;
 using CommonTestUtilities.Token;
 using FluentAssertions;
-using Microsoft.AspNetCore.Routing;
 using System.Net;
-using System.Text.Json;
 
 namespace WebApi.Test.Users.Registration
 {

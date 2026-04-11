@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using MyRecipeBook.Application.Services.AutoMapper;
+using Wallet.Application.Services.AutoMapper;
 
 namespace CommonTestUtilities.Services
 {

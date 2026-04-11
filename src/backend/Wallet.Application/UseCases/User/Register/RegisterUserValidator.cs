@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using System.Text.RegularExpressions;
 using Wallet.Communication.Requests.User;
 using Wallet.Exceptions;
 

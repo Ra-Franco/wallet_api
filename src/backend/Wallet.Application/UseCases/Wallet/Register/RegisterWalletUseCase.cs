@@ -1,9 +1,8 @@
-﻿using Wallet.Application.UseCases.Wallet.Register;
-using Wallet.Domain.Enum;
+﻿using Wallet.Domain.Enum;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.Wallet;
 
-namespace Wallet.Application.UseCases.Wallet.Add
+namespace Wallet.Application.UseCases.Wallet.Register
 {
     public class RegisterWalletUseCase : IRegisterWalletUseCase
     {

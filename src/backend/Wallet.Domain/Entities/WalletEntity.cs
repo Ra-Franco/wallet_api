@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Numerics;
 using Wallet.Domain.Enum;
 
 namespace Wallet.Domain.Entities

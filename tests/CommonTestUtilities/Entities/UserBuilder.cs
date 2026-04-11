@@ -19,7 +19,7 @@ namespace CommonTestUtilities.Entities
                 .RuleFor(user => user.Name, (f) => f.Person.FirstName)
                 .RuleFor(user => user.Email, (f, u) => f.Internet.Email(u.Name))
                 .RuleFor(user => user.UserIdentifier, _ => Guid.NewGuid())
-                .RuleFor(user => user.Password, (f) => passwordEncrypter.Encrypt(password))
+                .RuleFor(user => user.Password, passwordEncrypter.Encrypt(password))
                 .RuleFor(user => user.CPF, (f) => f.Person.Cpf())
                 .RuleFor(user => user.BirthDate, f => f.Person.DateOfBirth)
                 .RuleFor(user => user.Gender, f => f.PickRandom("M", "F"))

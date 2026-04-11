@@ -9,7 +9,7 @@ namespace CommonTestUtilities.Entities
         {
             return new Faker<RefreshToken>()
                 .RuleFor(r => r.UserId, user.Id)
-                .RuleFor(r => r.Value, f => Convert.ToBase64String(Guid.NewGuid().ToByteArray()))
+                .RuleFor(r => r.Value, Convert.ToBase64String(Guid.NewGuid().ToByteArray()))
                 .RuleFor(r => r.User, user)
                 .RuleFor(r => r.Created_On, DateTime.UtcNow);
         }

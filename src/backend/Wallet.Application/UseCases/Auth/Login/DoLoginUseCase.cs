@@ -1,7 +1,5 @@
-﻿using Wallet.Application.Tokens;
-using Wallet.Communication.Requests.Login;
+﻿using Wallet.Communication.Requests.Login;
 using Wallet.Communication.Responses.Token;
-using Wallet.Domain.Entities;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.Token;
 using Wallet.Domain.Repositories.User;

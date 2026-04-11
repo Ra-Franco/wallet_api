@@ -1,21 +1,13 @@
 ﻿using CommonTestUtilities.Entities;
-using FluentMigrator;
-using FluentMigrator.Runner;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using System.Globalization;
-using System.Reflection;
 using Testcontainers.MySql;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Enum;
 using Wallet.Domain.Security.Cryptography;
-using Wallet.Infrasctructure.Migrations;
-using Wallet.Infrasctucture.DataAccess;
+using Wallet.Infrasctructure.DataAccess;
 
 namespace WebApi.Test
 {
@@ -57,7 +49,7 @@ namespace WebApi.Test
                     _passwordEncrypt = scope.ServiceProvider.GetRequiredService<IPasswordEncrypt>();
 
                     dbContext.Database.EnsureCreated();
-                    StartDatabase(dbContext, services);
+                    StartDatabase(dbContext);
                 });
         }
         public string getCpf() => _user.CPF;
@@ -68,7 +60,7 @@ namespace WebApi.Test
 
         public string getCpfReceiver() => _userReceiver.CPF;
         public string getRefreshTokenValue() => _refreshToken.Value;
-        private void StartDatabase(WalletDbContext dbContext, IServiceCollection services)
+        private void StartDatabase(WalletDbContext dbContext)
         {
             (_user, _password) = UserBuilder.Build();
             _wallet = WalletBuilder.Build(_user, WalletStatus.Active);

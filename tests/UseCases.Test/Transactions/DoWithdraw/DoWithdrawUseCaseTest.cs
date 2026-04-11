@@ -5,9 +5,7 @@ using CommonTestUtilities.Repositories.Wallets;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Services;
 using FluentAssertions;
-using System.Globalization;
 using Wallet.Application.UseCases.Transaction.Withdraw;
-using Wallet.Communication.Requests.Transactions.Withdraw;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Enum;
 using Wallet.Exceptions;
@@ -41,7 +39,6 @@ namespace UseCases.Test.Transactions.DoWithdraw
         {
             (var user, var _) = UserBuilder.Build();
             var wallet = WalletBuilder.Build(user);
-            var receiverWallet = WalletBuilder.Build(user);
             var request = RequestCreateWithdrawBuilder.Build(characteres: 504);
 
             var useCase = CreateUseCase(user, wallet, wallet.TransactionPassword);
@@ -58,7 +55,6 @@ namespace UseCases.Test.Transactions.DoWithdraw
         {
             (var user, var _) = UserBuilder.Build();
             var wallet = WalletBuilder.Build(user);
-            var receiverWallet = WalletBuilder.Build(user);
             var request = RequestCreateWithdrawBuilder.Build();
 
             wallet.Balance = 1;
@@ -77,7 +73,6 @@ namespace UseCases.Test.Transactions.DoWithdraw
         {
             (var user, var _) = UserBuilder.Build();
             var wallet = WalletBuilder.Build(user);
-            var receiverWallet = WalletBuilder.Build(user);
             var request = RequestCreateWithdrawBuilder.Build();
 
             var useCase = CreateUseCase(user, wallet);

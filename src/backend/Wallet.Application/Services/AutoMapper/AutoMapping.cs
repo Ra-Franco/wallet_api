@@ -4,10 +4,10 @@ using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Utils.Page;
 using Wallet.Communication.Utils;
-using System.Runtime.InteropServices;
 using Wallet.Communication.Requests.User;
+using Wallet.Communication.Responses.User;
 
-namespace MyRecipeBook.Application.Services.AutoMapper
+namespace Wallet.Application.Services.AutoMapper
 {
     public class AutoMapping : Profile
     {
@@ -48,6 +48,9 @@ namespace MyRecipeBook.Application.Services.AutoMapper
             CreateMap<Transaction, ResponseTransaction>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.ToString()));
+
+            CreateMap<User, ResponseUserRegistration>()
+                .ForMember(dest => dest.Income, opt => opt.MapFrom(src => src.Income.DecimalToStringCurrency()));
         }
     }
 }

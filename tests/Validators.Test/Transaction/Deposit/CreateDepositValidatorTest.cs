@@ -8,7 +8,7 @@ namespace Validators.Test.Transaction.Deposit
     public class CreateDepositValidatorTest
     {
         [Fact]
-        public async Task Success()
+        public void Success()
         {
             var request = RequestCreateDepositBuilder.Build();
             var validator = new CreateDepositValidator();
@@ -19,7 +19,7 @@ namespace Validators.Test.Transaction.Deposit
         }
 
         [Fact]
-        public async Task Error_Transactional_Description_Max_Length()
+        public void Error_Transactional_Description_Max_Length()
         {
             var request = RequestCreateDepositBuilder.Build(504);
             var validator = new CreateDepositValidator();
@@ -32,7 +32,7 @@ namespace Validators.Test.Transaction.Deposit
         }
 
         [Fact]
-        public async Task Error_Amouent_Greater_Than_0()
+        public void Error_Amount_Greater_Than_0()
         {
             var request = RequestCreateDepositBuilder.Build();
             var validator = new CreateDepositValidator();

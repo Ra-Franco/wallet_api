@@ -1,6 +1,6 @@
-﻿using Wallet.Application.Services.LoggedUser;
-using Wallet.Communication.Responses.Wallet;
+﻿using Wallet.Communication.Responses.Wallet;
 using Wallet.Domain.Repositories.Wallet;
+using Wallet.Domain.Services.LoggedUser;
 
 namespace Wallet.Application.UseCases.Wallet.GetBalance
 {

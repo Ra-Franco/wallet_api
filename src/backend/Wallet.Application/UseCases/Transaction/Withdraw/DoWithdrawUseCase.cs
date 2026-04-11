@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
-using System.ComponentModel.DataAnnotations;
-using Wallet.Application.Services.LoggedUser;
 using Wallet.Communication.Requests.Transactions.Withdraw;
-using Wallet.Communication.Requests.Wallet;
 using Wallet.Communication.Responses.Transaction;
 using Wallet.Communication.Utils;
-using Wallet.Domain.Entities;
 using Wallet.Domain.Repositories;
 using Wallet.Domain.Repositories.Transactions;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Domain.Security.TransferPassword;
+using Wallet.Domain.Services.LoggedUser;
 using Wallet.Domain.Services.TransactionNumber;
 using Wallet.Exceptions.ExceptionsBase;
 using Wallet.Exceptions.TransactionalException;

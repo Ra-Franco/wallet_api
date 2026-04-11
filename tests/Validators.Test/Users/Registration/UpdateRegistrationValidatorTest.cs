@@ -74,7 +74,7 @@ namespace Validators.Test.Users.Registration
         {
             var validator = new UpdateRegistrationValidator();
             var request = RequestUpdateRegistrationUserBuilder.Build();
-            request.Phonenumber = "(99)21115-5555";
+            request.Phonenumber = "(132) 21115-5555";
             var result = validator.Validate(request);
 
             result.IsValid.Should().BeFalse();

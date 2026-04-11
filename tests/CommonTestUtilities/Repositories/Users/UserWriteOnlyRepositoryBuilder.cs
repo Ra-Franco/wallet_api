@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Wallet.Domain.Repositories.User;
 
-namespace CommonTestUtilities.Repositories.User
+namespace CommonTestUtilities.Repositories.Users
 {
     public class UserWriteOnlyRepositoryBuilder
     {

@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Wallet.Domain.Repositories.Transactions;
-using Wallet.Domain.Services.TransactionNumber;
+﻿using Wallet.Domain.Services.TransactionNumber;
 
 namespace Wallet.Infrasctructure.Services.TransactionNumber
 {

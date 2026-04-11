@@ -5,9 +5,7 @@ using CommonTestUtilities.Repositories.Wallets;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Services;
 using FluentAssertions;
-using Wallet.Application.UseCases.Wallet.SetTransactionalPassword;
 using Wallet.Application.UseCases.Wallet.TransactionalPassword;
-using Wallet.Communication.Requests.Wallet;
 using Wallet.Domain.Entities;
 using Wallet.Exceptions;
 

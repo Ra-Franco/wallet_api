@@ -1,7 +1,4 @@
-﻿using System.Linq.Expressions;
-using Wallet.Domain.Entities;
-
-namespace Wallet.Domain.Repositories.Wallet
+﻿namespace Wallet.Domain.Repositories.Wallet
 {
     public interface IWalletWriteOnlyRepository
     {

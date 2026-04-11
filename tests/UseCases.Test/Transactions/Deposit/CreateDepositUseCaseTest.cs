@@ -45,7 +45,7 @@ namespace UseCases.Test.Transactions.Deposit
                         e.GetErrorMessages().Contains(ResourceMessageException.TRANSACTIONAL_DESCRIPTION_MAX_LENGTH));
         }
 
-        private CreateDepositUseCase CreateUseCase(User user, WalletEntity wallet)
+        private CreateDepositUseCase CreateUseCase(User user, WalletEntity? wallet)
         {
             var transactionWriteRepo = TransactionWriteOnlyRepositoryBuilder.Build();
             var unitOfWork = UnitOfWorkBuilder.Build();

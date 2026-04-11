@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Wallet.Communication.Requests.Transactions.Transfer;
+﻿using Wallet.Communication.Requests.Transactions.Transfer;
 using Wallet.Communication.Responses.Transaction;
 
 namespace Wallet.Application.UseCases.Transaction.Transfer
