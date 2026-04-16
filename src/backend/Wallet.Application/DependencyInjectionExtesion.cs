@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using Wallet.Application.Services.Cryptography;
 using Wallet.Application.Services.AutoMapper;
 using Wallet.Application.Services.PasswordTransactional;
+using Wallet.Application.Services.Transactional;
 using Wallet.Application.UseCases.Auth.Login;
 using Wallet.Application.UseCases.Transaction.Deposits;
 using Wallet.Application.UseCases.Transaction.Get;
@@ -21,6 +22,7 @@ using Wallet.Application.UseCases.User.Registration.Get;
 using Wallet.Application.UseCases.User.Security.Get;
 using Wallet.Application.UseCases.User.Security.Update;
 using Wallet.Application.UseCases.Wallet.Dashboard;
+using Wallet.Domain.Services.Transactional;
 
 namespace Wallet.Application
 {
@@ -32,6 +34,7 @@ namespace Wallet.Application
             AddUseCases(services);
             AddPasswordEncrypter(services, configuration);
             AddTransferPasswordValidator(services);
+            AddTransactionalSecurityValidator(services);
         }
 
         private static void AddAutomapper(IServiceCollection services)
@@ -69,5 +72,6 @@ namespace Wallet.Application
         }
 
         private static void AddTransferPasswordValidator(IServiceCollection services) => services.AddScoped<ITransferPasswordValidator, TransferPasswordValidator>();
+        private static void AddTransactionalSecurityValidator(IServiceCollection services) => services.AddScoped<IUserSecurityTransactional, UserSecurityTransactional>();
     }   
 }

@@ -7,6 +7,7 @@ using Wallet.Domain.Repositories.Transactions;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Domain.Security.TransferPassword;
 using Wallet.Domain.Services.LoggedUser;
+using Wallet.Domain.Services.Transactional;
 using Wallet.Domain.Services.TransactionNumber;
 using Wallet.Exceptions;
 using Wallet.Exceptions.ExceptionsBase;
@@ -24,8 +25,9 @@ namespace Wallet.Application.UseCases.Transaction.Transfer
         private readonly ITransactionNumberGenerator _transactionNumberGenerator;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWalletWriteOnlyRepository _walletWriteRepo;
+        private readonly IUserSecurityTransactional _userSecurityTransactional;
 
-        public DoTransferUseCase(ILoggedUser loggedUser, ITransferPasswordValidator transferPasswordValidator, ITransactionWriteOnlyRepository transactionWriteRepo, IWalletReadOnlyRepository walletReadRepo, ITransactionNumberGenerator transactionNumberGenerator, IUnitOfWork unitOfWork, IWalletWriteOnlyRepository walletWriteRepo)
+        public DoTransferUseCase(ILoggedUser loggedUser, ITransferPasswordValidator transferPasswordValidator, ITransactionWriteOnlyRepository transactionWriteRepo, IWalletReadOnlyRepository walletReadRepo, ITransactionNumberGenerator transactionNumberGenerator, IUnitOfWork unitOfWork, IWalletWriteOnlyRepository walletWriteRepo, IUserSecurityTransactional userSecurityTransactional)
         {
             _loggedUser = loggedUser;
             _transferPasswordValidator = transferPasswordValidator;
@@ -34,19 +36,21 @@ namespace Wallet.Application.UseCases.Transaction.Transfer
             _transactionNumberGenerator = transactionNumberGenerator;
             _unitOfWork = unitOfWork;
             _walletWriteRepo = walletWriteRepo;
+            _userSecurityTransactional = userSecurityTransactional;
         }
 
         public async Task<ResponseTransfer> Execute(RequestTransfer request)
         {
             await Validate(request);
             var user = await _loggedUser.User();
-            
+
+            await _userSecurityTransactional.ValidateTransactionalSecurity(request.Amount, user.Id);
             await _transferPasswordValidator.Validate(user.Id, request.TransactionPassword);
             var sentWallet = await _walletReadRepo.FindWalletByUserId(user.Id);
-
+            
             if (request.Amount > sentWallet.Balance)
                 throw new AmountNotAvaliableExecption();
-
+            
             var receiverWallet = await _walletReadRepo.FindWalletByCpf(request.ReceiverCpf) ?? throw new NotFoundException(ResourceMessageException.RECEIVER_WALLET_NOT_FOUND);
 
             if (!receiverWallet.Status.Equals(WalletStatus.Active))

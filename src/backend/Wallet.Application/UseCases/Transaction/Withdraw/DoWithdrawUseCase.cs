@@ -7,6 +7,7 @@ using Wallet.Domain.Repositories.Transactions;
 using Wallet.Domain.Repositories.Wallet;
 using Wallet.Domain.Security.TransferPassword;
 using Wallet.Domain.Services.LoggedUser;
+using Wallet.Domain.Services.Transactional;
 using Wallet.Domain.Services.TransactionNumber;
 using Wallet.Exceptions.ExceptionsBase;
 using Wallet.Exceptions.TransactionalException;
@@ -23,8 +24,9 @@ namespace Wallet.Application.UseCases.Transaction.Withdraw
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITransferPasswordValidator _transferPasswordValidator;
+        private readonly IUserSecurityTransactional _userSecurityTransactional;
 
-        public DoWithdrawUseCase(ILoggedUser loggedUser, IWalletReadOnlyRepository walletReadRepository, ITransactionNumberGenerator transactionNumberGenerator, ITransactionWriteOnlyRepository transactionWriteRepository, IWalletWriteOnlyRepository walletWriteRepository, IMapper mapper, IUnitOfWork unitOfWork, ITransferPasswordValidator transferPasswordValidator)
+        public DoWithdrawUseCase(ILoggedUser loggedUser, IWalletReadOnlyRepository walletReadRepository, ITransactionNumberGenerator transactionNumberGenerator, ITransactionWriteOnlyRepository transactionWriteRepository, IWalletWriteOnlyRepository walletWriteRepository, IMapper mapper, IUnitOfWork unitOfWork, ITransferPasswordValidator transferPasswordValidator, IUserSecurityTransactional userSecurityTransactional)
         {
             _loggedUser = loggedUser;
             _walletReadRepository = walletReadRepository;
@@ -34,16 +36,20 @@ namespace Wallet.Application.UseCases.Transaction.Withdraw
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _transferPasswordValidator = transferPasswordValidator;
+            _userSecurityTransactional = userSecurityTransactional;
         }
 
         public async Task<ResponseShortTransaction> Execute(RequestCreateWithdraw request)
         {
-            await Validate(request);
+            Validate(request);
             var user = await _loggedUser.User();
             var wallet = await _walletReadRepository.FindWalletByUserId(user.Id);
+            
             await _transferPasswordValidator.Validate(user.Id, request.TransactionPassword);
+            
             var amount = request.Amount.StringToDecimalCurrency();
-
+            await _userSecurityTransactional.ValidateTransactionalSecurity(amount,user.Id);
+            
             if (wallet.Balance < amount)
                 throw new AmountNotAvaliableExecption();
 
@@ -70,7 +76,7 @@ namespace Wallet.Application.UseCases.Transaction.Withdraw
             return response;
         }
 
-        public async Task Validate(RequestCreateWithdraw request)
+        public void Validate(RequestCreateWithdraw request)
         {
             var validator = new DoWithdrawValidator();
             var result = validator.Validate(request);
